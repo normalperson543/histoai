@@ -12,7 +12,10 @@ To test oscc-sf24, run ```pnpm install``` to install dependencies.
 
 Then, connect a Prisma compatible database to use oscc-sf24. The recommended database is SQLite. 
 
-To connect Prisma to SQLite, create a blank SQLite database file and copy it to the app directory. Then, enter your ```.env``` file and specify the URL of your database in the ```DATABASE_URL``` environment variable.
+To connect Prisma to a new local SQLite database, run the following:
+```
+pnpm dlx prisma db push
+```
 
 Run ```pnpm dev``` to run the development server locally.
 
