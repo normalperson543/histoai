@@ -43,7 +43,7 @@ export async function addPatient(
         assignedUser: string
     }
 ) {
-    const patient = prisma.patient.create({
+    const createdPatient = prisma.patient.create({
         "data": {
             firstName: firstName,
             middleName: middleName,
@@ -53,7 +53,7 @@ export async function addPatient(
             assignedUser: assignedUser
         }
     })
-    return patient;
+    return createdPatient;
 }
 export async function deletePatient(patientId: string) {
     const deletedPatient = prisma.patient.delete({
@@ -83,7 +83,7 @@ export async function submitReport(
         notes: string
     }
 ) {
-    const report = prisma.report.create({
+    const createdReport = prisma.report.create({
         "data": {
             patientId: patientId,
             userId: userId,
@@ -94,13 +94,13 @@ export async function submitReport(
             notes: notes
         }
     });
-    return report;
+    return createdReport;
 }
 export async function deleteReport( analysisId: string ) {
-    const deleteReport = prisma.report.delete({
+    const deletedReport = prisma.report.delete({
         "where": {
             id: analysisId
         }
     })
-    return deleteReport;
+    return deletedReport;
 }
