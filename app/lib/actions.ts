@@ -25,6 +25,44 @@ export async function uploadImage(formData: FormData) {
 
     return imagePath;
 }
+export async function addPatient(
+    {
+        firstName,
+        middleName,
+        lastName,
+        dateOfBirth,
+        sex,
+        assignedUser
+    } :
+    {
+        firstName: string,
+        middleName: string,
+        lastName: string,
+        dateOfBirth: Date,
+        sex: number,
+        assignedUser: string
+    }
+) {
+    const patient = prisma.patient.create({
+        "data": {
+            firstName: firstName,
+            middleName: middleName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            sex: sex,
+            assignedUser: assignedUser
+        }
+    })
+    return patient;
+}
+export async function deletePatient(patientId: string) {
+    const deletedPatient = prisma.patient.delete({
+        "where": {
+            id: patientId
+        }
+    })
+    return deletedPatient;
+}
 export async function submitReport(
     {
         patientId,
@@ -36,8 +74,8 @@ export async function submitReport(
         notes
     }:
     {
-        patientId: number
-        userId: number,
+        patientId: string
+        userId: string,
         imageLink: string,
         containsOSCC: boolean,
         confidenceRate: number,
@@ -58,7 +96,7 @@ export async function submitReport(
     });
     return report;
 }
-export async function deleteReport( analysisId: number ) {
+export async function deleteReport( analysisId: string ) {
     const deleteReport = prisma.report.delete({
         "where": {
             id: analysisId

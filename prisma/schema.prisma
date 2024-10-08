@@ -27,14 +27,14 @@ model Patient {
   lastName String
   dateOfBirth DateTime
   sex Int
-  assignedUser Int
+  assignedUser String
 }
 
 model Report {
   id String @id @default(cuid())
   dateGenerated DateTime @default(now())
-  patientId Int
-  userId Int
+  patientId String
+  userId String
   imageLink String
   containsOSCC Boolean
   confidenceRate Float
