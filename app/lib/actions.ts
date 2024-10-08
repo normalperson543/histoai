@@ -25,32 +25,16 @@ export async function uploadImage(formData: FormData) {
 
     return imagePath;
 }
-export async function addPatient(
-    {
-        firstName,
-        middleName,
-        lastName,
-        dateOfBirth,
-        sex,
-        assignedUser
-    } :
-    {
-        firstName: string,
-        middleName: string,
-        lastName: string,
-        dateOfBirth: Date,
-        sex: number,
-        assignedUser: string
-    }
-) {
+export async function addPatient(formData: FormData) {
+    const formEntries = Object.fromEntries(formData.entries());
     const createdPatient = prisma.patient.create({
         "data": {
-            firstName: firstName,
-            middleName: middleName,
-            lastName: lastName,
-            dateOfBirth: dateOfBirth,
-            sex: sex,
-            assignedUser: assignedUser
+            firstName: formEntries.firstName,
+            middleName: formEntries.middleName,
+            lastName: formEntries.lastName,
+            dateOfBirth: formEntries.dateOfBirth,
+            sex: formEntries.sex,
+            assignedUser: formEntries.assignedUser
         }
     })
     return createdPatient;
@@ -63,35 +47,17 @@ export async function deletePatient(patientId: string) {
     })
     return deletedPatient;
 }
-export async function submitReport(
-    {
-        patientId,
-        userId,
-        imageLink,
-        containsOSCC,
-        confidenceRate,
-        survey,
-        notes
-    }:
-    {
-        patientId: string
-        userId: string,
-        imageLink: string,
-        containsOSCC: boolean,
-        confidenceRate: number,
-        survey: string,
-        notes: string
-    }
-) {
+export async function submitReport(formData: FormData) {
+    const formEntries = Object.fromEntries(formData.entries())
     const createdReport = prisma.report.create({
         "data": {
-            patientId: patientId,
-            userId: userId,
-            imageLink: imageLink,
-            containsOSCC: containsOSCC,
-            confidenceRate: confidenceRate,
-            survey: survey,
-            notes: notes
+            patientId: formEntries.patientId,
+            userId: formEntries.userId,
+            imageLink: formEntries.imageLink,
+            containsOSCC: formEntries.containsOSCC,
+            confidenceRate: formEntries.confidenceRate,
+            survey: formEntries.survey,
+            notes: formEntries.notes
         }
     });
     return createdReport;
