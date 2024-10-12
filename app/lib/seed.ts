@@ -10,4 +10,5 @@ export default async function seedDatabase() {
             }
         ],
     });
+    console.log("Successfully seeded the database")
 }
