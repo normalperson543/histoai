@@ -10,7 +10,7 @@ export default function AddPatientForm() {
             <div>First Name</div>
             <input type="text" name="firstName" required />
             <div>Middle name</div>
-            <input type="text" name="middleName" required />
+            <input type="text" name="middleName" />
             <div>Last name</div>
             <input type="text" name="lastName" required />
             <div>Date of birth</div>
