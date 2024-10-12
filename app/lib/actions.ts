@@ -28,7 +28,7 @@ export async function uploadImage(formData: FormData) {
 export async function addPatient(formData: FormData) {
     const dateObject = new Date(formData.get("dateOfBirth") as string);
     const dateToISOString = dateObject.toISOString();
-    const createdPatient = prisma.patient.create({
+    const createdPatient = await prisma.patient.create({
         "data": {
             firstName: formData.get("firstName") as string,
             middleName: formData.get("middleName") as string,
@@ -41,7 +41,7 @@ export async function addPatient(formData: FormData) {
     return createdPatient;
 }
 export async function deletePatient(patientId: string) {
-    const deletedPatient = prisma.patient.delete({
+    const deletedPatient = await prisma.patient.delete({
         "where": {
             id: patientId
         }
@@ -49,7 +49,7 @@ export async function deletePatient(patientId: string) {
     return deletedPatient;
 }
 export async function submitReport(formData: FormData) {
-    const createdReport = prisma.report.create({
+    const createdReport = await prisma.report.create({
         "data": {
             patientId: formData.get("patientId") as string,
             userId: formData.get("userId") as string,
@@ -63,7 +63,7 @@ export async function submitReport(formData: FormData) {
     return createdReport;
 }
 export async function deleteReport( analysisId: string ) {
-    const deletedReport = prisma.report.delete({
+    const deletedReport = await prisma.report.delete({
         "where": {
             id: analysisId
         }
