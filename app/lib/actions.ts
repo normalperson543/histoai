@@ -26,15 +26,16 @@ export async function uploadImage(formData: FormData) {
     return imagePath;
 }
 export async function addPatient(formData: FormData) {
-    const formEntries = Object.fromEntries(formData.entries());
+    const dateObject = new Date(formData.get("dateOfBirth") as string);
+    const dateToISOString = dateObject.toISOString();
     const createdPatient = prisma.patient.create({
         "data": {
-            firstName: formEntries.firstName,
-            middleName: formEntries.middleName,
-            lastName: formEntries.lastName,
-            dateOfBirth: formEntries.dateOfBirth,
-            sex: formEntries.sex,
-            assignedUser: formEntries.assignedUser
+            firstName: formData.get("firstName") as string,
+            middleName: formData.get("middleName") as string,
+            lastName: formData.get("lastName") as string,
+            dateOfBirth: dateToISOString,
+            sex: formData.get("sex") as string,
+            assignedUser: formData.get("assignedUser") as string
         }
     })
     return createdPatient;
@@ -48,16 +49,15 @@ export async function deletePatient(patientId: string) {
     return deletedPatient;
 }
 export async function submitReport(formData: FormData) {
-    const formEntries = Object.fromEntries(formData.entries())
     const createdReport = prisma.report.create({
         "data": {
-            patientId: formEntries.patientId,
-            userId: formEntries.userId,
-            imageLink: formEntries.imageLink,
-            containsOSCC: formEntries.containsOSCC,
-            confidenceRate: formEntries.confidenceRate,
-            survey: formEntries.survey,
-            notes: formEntries.notes
+            patientId: formData.get("patientId") as string,
+            userId: formData.get("userId") as string,
+            imageLink: formData.get("imageLink") as string,
+            containsOSCC: formData.get("containsOSCC") as unknown as boolean,
+            confidenceRate: formData.get("confidenceRate") as unknown as number,
+            survey: formData.get("confidenceRate") as string,
+            notes: formData.get("confidenceRate") as string
         }
     });
     return createdReport;
