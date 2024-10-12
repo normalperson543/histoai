@@ -35,7 +35,6 @@ model Report {
   dateGenerated DateTime @default(now())
   patientId String
   userId String
-  imageLink String
   containsOSCC Boolean
   confidenceRate Float
   survey String
