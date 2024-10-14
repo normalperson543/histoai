@@ -53,7 +53,6 @@ export async function submitReport(formData: FormData) {
         "data": {
             patientId: formData.get("patientId") as string,
             userId: formData.get("userId") as string,
-            imageLink: formData.get("imageLink") as string,
             containsOSCC: formData.get("containsOSCC") as unknown as boolean,
             confidenceRate: formData.get("confidenceRate") as unknown as number,
             survey: formData.get("confidenceRate") as string,
