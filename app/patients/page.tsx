@@ -1,5 +1,3 @@
-import '../stylesheets/globals.css';
-import  '../stylesheets/patientDataPage.css';
 export default function PatientDataPage() {
     return (
       <main>
