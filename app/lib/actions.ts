@@ -6,6 +6,9 @@ import { promisify } from "util";
 import prisma from "./db";
 
 const writeFile = promisify(fs.writeFile);
+const { mkdir } = require('node:fs/promises');
+const { join } = require('node:path');
+
 
 // https://stackoverflow.com/a/35922073
 const today = new Date().toISOString().slice(0, 10);
@@ -21,7 +24,7 @@ export async function uploadImage(formData: FormData) {
     const fileBuffer = await image.arrayBuffer();
     const imagePath = path.join(`/images/Analysis${analysisId}_Patient${patientId}_${today}${path.extname(image.name)}`);
     
-    await writeFile(imagePath, Buffer.from(fileBuffer));
+    await writeFile(imagePath, Buffer.from(fileBuffer)); // If this seems to produce an error, it doesn't
 
     return imagePath;
 }
@@ -68,4 +71,11 @@ export async function deleteReport( analysisId: string ) {
         }
     })
     return deletedReport;
+}
+
+export async function initImagesDirectory() {
+    const projectFolder = './images/';
+    const dirCreation = await mkdir(projectFolder, { recursive: true });
+    
+    return dirCreation;
 }
