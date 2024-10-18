@@ -1,14 +1,14 @@
-/*'use client';
-import {createContext} from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import Link from 'next/link';
 
 export default function page() {
   return (
     <main>
-      <Link href='/'> </Link>
-      <Link href='/pages/uploadPage' />
-      <Link href='/pages/reportPage'/>
-      <Link href='/pages/patientDataPage' />
+      <div className='container mx-auto px-4'>
+        <h1>Hello this is the home page</h1>
+        <p>This is content to make the page longer</p>
+        <div className='w-full h-screen bg-green-300'></div>
+        <p>Dummy text</p>
+      </div>
     </main>
   );
-}*/
+}
