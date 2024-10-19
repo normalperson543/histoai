@@ -5,12 +5,22 @@ export default function Header() {
     return (
         <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2">
             <div className="flex grow justify-start">
-                <Image
-                    src="logo.svg"
-                    width={50}
-                    height={50}
-                    alt="HistoAI logo"
-                />
+                <div className="bg-hblue-light flex flex-row ">
+                    <Image
+                        src="/logo.svg"
+                        width={50}
+                        height={50}
+                        alt="HistoAI logo"
+                    />
+                    <strong className="flex items-center h-full px-3 py-1 shrink">
+                        OrgName
+                    </strong>
+                </div>
+                <Link href="/dashboard">
+                    <button className="flex items-center h-full px-3 py-1 shrink">
+                        <strong>Dashboard</strong>
+                    </button>
+                </Link>
                 <Link href="/patients">
                     <button className="flex items-center h-full px-3 py-1 shrink">
                         <strong>Patients</strong>
@@ -23,18 +33,22 @@ export default function Header() {
                 </Link>
             </div>
             <div className="flex grow justify-end">
-                <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
-                    <SmProfilePicture username="dp" /> 
-                    Dylan Bhavesh Patel
-                </button>
-                <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
-                    Sign up
-                </button>
-                <Link href="/login">
+                <div className="flex shrink justify-end">
                     <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
-                        Log in
+                        <SmProfilePicture username="ab" /> 
+                        placeholder
                     </button>
-                </Link>
+                </div>
+                <div className="flex shrink justify-end">
+                    <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
+                        Sign up
+                    </button>
+                    <Link href="/login">
+                        <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
+                            Log in
+                        </button>
+                    </Link>
+                </div>
             </div>
         </header>
     );
