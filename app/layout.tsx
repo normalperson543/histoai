@@ -3,18 +3,6 @@ import './stylesheets/globals.css';
 import type { Metadata } from 'next';
 import { Red_Hat_Text } from 'next/font/google';
 import Header from './ui/header';
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    hblue: {
-      main: '#E3D026',
-      light: '#E9DB5D',
-      dark: '#A29415',
-      contrastText: '#242105',
-    },
-  },
-});
 
 const redHatText = Red_Hat_Text({ subsets: ['latin'] });
 
