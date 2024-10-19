@@ -1,9 +1,22 @@
-import Nav from "./components/navBar"
+import Nav from "./ui/old-header"
 import './stylesheets/globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Red_Hat_Text } from 'next/font/google';
+import Header from './ui/header';
+import { createTheme } from '@mui/material/styles';
 
-const inter = Inter({ subsets: ['latin'] });
+const theme = createTheme({
+  palette: {
+    hblue: {
+      main: '#E3D026',
+      light: '#E9DB5D',
+      dark: '#A29415',
+      contrastText: '#242105',
+    },
+  },
+});
+
+const redHatText = Red_Hat_Text({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,10 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Nav/>
+      <body className={redHatText.className}>
+        <Header />
         {children}
-        </body>
+      </body>
     </html>
   );
 }
