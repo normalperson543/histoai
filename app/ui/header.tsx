@@ -6,15 +6,19 @@ export default function Header() {
         <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2">
             <div className="flex grow justify-start">
                 <div className="bg-hblue-light flex flex-row ">
-                    <Image
-                        src="/logo.svg"
-                        width={50}
-                        height={50}
-                        alt="HistoAI logo"
-                    />
-                    <strong className="flex items-center h-full px-3 py-1 shrink">
-                        OrgName
-                    </strong>
+                    <Link href="/">
+                        <Image
+                            src="/logo.svg"
+                            width={50}
+                            height={50}
+                            alt="HistoAI logo"
+                        />
+                    </Link>
+                    <Link href="/">
+                        <strong className="flex items-center h-full px-3 py-1 shrink">
+                            OrgName
+                        </strong>
+                    </Link>
                 </div>
                 <Link href="/dashboard">
                     <button className="flex items-center h-full px-3 py-1 shrink">
