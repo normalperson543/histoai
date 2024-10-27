@@ -10,7 +10,6 @@ async function read(analysisId: string) {
         .then(
             (file) =>
             {
-                console.log("Successful. printing now")
                 myFile = file;
             }
         )
