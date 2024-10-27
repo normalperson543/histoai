@@ -58,8 +58,8 @@ export async function submitReport(formData: FormData) {
             userId: formData.get("userId") as string,
             containsOSCC: formData.get("containsOSCC") as unknown as boolean,
             confidenceRate: formData.get("confidenceRate") as unknown as number,
-            survey: formData.get("confidenceRate") as string,
-            notes: formData.get("confidenceRate") as string
+            survey: formData.get("survey") as string,
+            notes: formData.get("notes") as string
         }
     });
     return createdReport;
