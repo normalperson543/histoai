@@ -3,7 +3,7 @@ import Link from "next/link";
 import SmProfilePicture from "./profile-picture";
 export default function Header() {
     return (
-        <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2">
+        <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2 bg-hblue-dark">
             <div className="flex grow justify-start">
                 <div className="bg-hblue-light flex flex-row ">
                     <Link href="/">

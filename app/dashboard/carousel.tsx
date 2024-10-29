@@ -25,17 +25,22 @@ export default function Carousel({slides}) {
     }
 
     return (
-        <div className="overflow-hidden relative h-full">
+        <div className="overflow-hidden relative h-full m-auto">
             <div className={`flex transition ease-out duration-40 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
                 {slides.map((s) => {
                     if("imageUrl" in s) {
-                        return <img className="min-w-full" src = {s.imageUrl}/>
+                        return <div className="min-w-full min-h-full m-auto"><img className="object-fill m-auto" src = {s.imageUrl}/></div>
                     } else if ("info" in s) {
                         return (
                             <div className="text-center text-sm content-center mx-auto px-10 min-w-full">
-                                <h1><strong>Name:</strong><br/>{s.info.name}</h1>
-                                <h1><strong>Date of Birth:</strong><br/>{s.info.dOB.toLocaleDateString()}</h1>
-                                <h1><strong>Sex:</strong><br/>{s.info.sex}</h1>
+                                <p className="">
+                                    <strong>Name:</strong><br/>
+                                    {s.info.name}<br/>
+                                    <strong>Date of Birth:</strong><br/>
+                                    {s.info.dOB.toLocaleDateString()}<br/>
+                                    <strong>Sex:</strong><br/>
+                                    {s.info.sex}
+                                </p>
                             </div>
                         )
                     }
@@ -51,7 +56,7 @@ export default function Carousel({slides}) {
                 </button>
             </div>
 
-            <div className="absolute bottom-0 py-4 flex justify-center gap-3 w-full">
+            <div className="absolute bottom-0 py-1 flex justify-center gap-3 w-full">
                 {slides.map((s, i) => {
                     return (
                         <div onClick={()=> setCurrent(i)} key={"circle" + i} className={`rounded-full w-5 h-5 cursor-pointer ${i == current ? "bg-hblue-dark" : "bg-hblue-light"}`}></div>
