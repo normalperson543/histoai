@@ -6,12 +6,20 @@ oscc-sf24 is **NOT** designed to diagnose oral cancers. It is only meant as an a
 This website is meant for _qualified scientists_ that already have prior experience and sufficient knowledge and certifications in treating and diagnosing oral cancers.
 
 This software comes with **ABSOLUTELY NO WARRANTY!!!**
+
 ## Installation
-To test oscc-sf24, run ```pnpm install``` to install dependencies and ```pnpm dev``` to run the development server locally.
+To test oscc-sf24, run ```pnpm install``` to install dependencies.
+
+Then, connect a Prisma compatible database to use oscc-sf24. The recommended database is SQLite. 
+
+To connect Prisma to a new local SQLite database, run the following:
+```
+pnpm dlx prisma db push
+```
+
+Run ```pnpm dev``` to run the development server locally.
 
 Then, open https://localhost:3000 in your browser.
-
-To connect to a Neon database, add the configuration to a ```.env``` file in the root.
 
 ## Deployment
 This can be deployed locally on premises, for security purposes.
