@@ -26,7 +26,7 @@ export default function Carousel({slides}) {
 
     return (
         <div className="overflow-hidden relative h-full m-auto">
-            <div className={`flex transition ease-out duration-40 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
+            <div className={`flex transition duration-700 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
                 {slides.map((s) => {
                     if("imageUrl" in s) {
                         return <div className="min-w-full min-h-full m-auto"><img className="object-fill m-auto" src = {s.imageUrl}/></div>
