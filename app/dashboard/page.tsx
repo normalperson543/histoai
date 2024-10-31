@@ -5,12 +5,17 @@ export default function Home() {
   
   return (
     <main>
-      <h1>Hello this is the dashboard page</h1>
-      <div className='w-[60%]  mx-auto border-2 border-hblue '>
-        <Carousel slides={recentImages}/>
+      <div className='flex flex-row w-[100%] mt-10 text-4xl'>
+        <h1 className='mx-auto'>Recent Uploads</h1>
+        <h1 className='mx-auto'>Recent Patients</h1>
       </div>
-      <div className='w-[60%] h-72 mx-auto pt-11 bg-clip-content bg-hblue'>
-        <Carousel slides={recentPatients}/>
+      <div className='flex flex-row'>
+        <div className='w-[40%] mx-auto border-2 border-hblue '>
+          <Carousel slides={recentImages}/>
+        </div>
+        <div className='w-[40%] mx-auto bg-clip-content bg-hblue'>
+          <Carousel slides={recentPatients}/>
+        </div>
       </div>
     </main>
   );

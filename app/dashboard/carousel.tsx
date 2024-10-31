@@ -25,17 +25,19 @@ export default function Carousel({slides}) {
     }
 
     return (
-        <div className="overflow-hidden relative h-full m-auto">
+        <div className="group overflow-hidden relative h-full m-auto">
             <div className={`flex transition duration-700 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
                 {slides.map((s) => {
                     if("imageUrl" in s) {
                         return <div className="min-w-full min-h-full m-auto"><img className="object-fill m-auto" src = {s.imageUrl}/></div>
                     } else if ("info" in s) {
                         return (
-                            <div className="text-center text-sm content-center mx-auto px-10 min-w-full">
-                                <p className="">
-                                    <strong>Name:</strong><br/>
-                                    {s.info.name}<br/>
+                            <div className="flex flex-col items-center justify-center text-center text-sm mx-auto px-10 min-w-full">
+                                <h1 className="text-4xl group-hover:text-sm transition-all duration-500 ease-in-out">
+                                    <strong>Name:</strong> <br></br>
+                                    {s.info.name}
+                                </h1>
+                                <p className="opacity-0 group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-500 group-hover:2000 transition-opacity duration-500">
                                     <strong>Date of Birth:</strong><br/>
                                     {s.info.dOB.toLocaleDateString()}<br/>
                                     <strong>Sex:</strong><br/>
