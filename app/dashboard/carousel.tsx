@@ -20,7 +20,7 @@ import { useState } from 'react';
 //   info: Patient
 // }
 
-export default function Carousel({slides, carouselType}) {
+export default function Carousel({slides, carouselType} : {slides: any, carouselType: string}) {
 
     let [current, setCurrent] = useState(0);
 
@@ -43,7 +43,7 @@ export default function Carousel({slides, carouselType}) {
     return (
         <div className="group overflow-hidden relative h-full m-auto">
             <div className={`flex transition duration-700 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
-                {slides.map((s) => {
+                {slides.map((s:any) => {
                     if(carouselType === "images") {
                         return <div key={s.id} className="min-w-full min-h-full m-auto"><img className="object-fill m-auto" src = {s.imageUrl}/></div>
                     } else if (carouselType === "patients") {
@@ -75,7 +75,7 @@ export default function Carousel({slides, carouselType}) {
             </div>
 
             <div className="absolute bottom-0 py-1 flex justify-center gap-3 w-full">
-                {slides.map((s, i) => {
+                {slides.map((s:any, i:number) => {
                     return (
                         <div onClick={()=> setCurrent(i)} key={"circle" + i} className={`rounded-full w-5 h-5 cursor-pointer ${i == current ? "bg-hblue-dark" : "bg-hblue-light"}`}></div>
                     )

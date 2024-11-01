@@ -1,4 +1,4 @@
-export default function PatientDetailPage({ params }) {
+export default function PatientDetailPage({ params }: {params:any}) {
     const { id } = params;  // Extract the dynamic segment
     const patient = patients[id];
     const reportRows = patient.reports?.map(report => 
