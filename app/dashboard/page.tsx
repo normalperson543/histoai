@@ -10,11 +10,11 @@ export default function Home() {
         <h1 className='mx-auto'>Recent Patients</h1>
       </div>
       <div className='flex flex-row'>
-        <div className='w-[40%] mx-auto border-2 border-hblue '>
-          <Carousel slides={recentImages}/>
+        <div className='w-[40%] mx-auto border-2 border-hblue rounded-2xl shadow-lg'>
+          <Carousel slides={recentImages} carouselType={"images"}/>
         </div>
-        <div className='w-[40%] mx-auto bg-clip-content bg-hblue'>
-          <Carousel slides={recentPatients}/>
+        <div className='w-[40%] mx-auto bg-clip-content bg-hblue rounded-2xl shadow-lg'>
+          <Carousel slides={recentPatients} carouselType={"patients"}/>
         </div>
       </div>
     </main>
@@ -27,7 +27,29 @@ const recentImages = [
   {id: 2, imageUrl:"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAPDxAQDRAREA0PDxUREBAQEg8SDxAQFxEWFhgRFRMYHyggGBolGxUYIj0hJjUrLi4uGB8zODMsOCguLisBCgoKDQ0NGg0NGisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAABwgBBQIEBgP/xABDEAACAgECAwUEBQgHCQAAAAAAAQIDBAURBxIhBjFBUWETInGBFCMykaEIM0JSYnKSsRU0U4KissEkQ0RUk6PD0dP/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AnEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD5X3RhFynJRhFOUpSaUYxS3bbfcgPpudHVNYx8SHtMu6qivu5rZxgm/Jb979EQ/2941crnj6Mk2t4yzJpOPxpg/tfvS6dO5rZkL6nqd+Va7sq2y62XfOyTlLbyW/cvRdEBYvVuNmk0vap35UvOqrlh99jj+G5oLuP8AVv8AV6dY14OV8Yv7lBkEbgCd6uP9b259Oml48uRGXX4OCN3pnG/S7XtdHIxn+tZXzw++tyl+BW0wBdDRtexc2Dnh5FV8V3uucZOL8pJdYv0Zskyk+n59uPZG3HtnTdH7M65OMl6brwJx4a8YPbyhias4xtltGrKW0YWS7lG2K6Rk/wBZdH5LxCaAcYy3RyAAAAAAAAAAAAAAAAAAAAAAABhsD5ZN8a4SnOSjCEXKUpNKMYpbttvuSRWninxKs1OyWPiSlXpsJbeKllNP85PxUOnSPzfXZL03Hnts+b+i8We0UlLMkvFvaUaN/Lb3n8YrzRCbAMwd3SdKvy7Y0YlU7rp90ILd7eLfgkvN9ES72c4DzlGM9TyfZtrrTjJSkvR2y6b/AAT+IEKmdizmPwW0aMUpVXWNfpTvsUn8eXZfgdPU+B2l2L6ieTjy8OWxWQ+cZpt/egK3AkHtlwm1DToytrSzMWK3lZTFqyC8507tpeq5ktuux4BoDiZTMACfuB3b6WQv6NzZ818I74tkn71tUV1qbffKKW6847/q9ZkTKUaXqNmLfVfRLltpsjZB9ftRe+z9H3NeKLj6DqUMvGoya/sX1QtivFc0U+V+q32+QGxAAAAAAAAAAAAAAAAAAAAADR9sdejp2DkZc9n7GtuEX3Tsfuwh85NI3hCX5R2tNQxMGL+3KWRat/CPuV7+m7n/AAoCEMzJndZO22TnbbOVlk33ynJ7yk/i2bHsp2ev1PLrxcZbzn1lN/ZqrTXNZL0W/wA20u9mrqrlKSjGLlKTSjGKbcm3skl4stPwr7Fx0rDSsivpt6U8ifin3xpT8o77er3fkBtOxfY/F0mj2WNHectndfJL2t0vOT8EvCPcvvb9HsEZAGGjIA4uJBPHDh/XTCWp4UFCPOvpdUVtFOT2V8V4byaTXm0/NueDo61p8crGvx7FvC+qdUl6Si47/iBSswcpxabUls09mvJrwOIAs7wFzXbotcW2/o99tXXfu5vaJf8AcKxosj+TzW1pE2+6Wba16r2dS/mmBKCMhAAAAAAAAAAAAAAAAAAAAMMi7iPwqs1bLeXXmRrn7ONcabKm4JR3/TUt+rbfd4kpACFeHHCO/C1BZOoumdeOubHVcpTUrm+k2pJNcq69V3uL8CaIozymQAAAAAAYZk872912OBpuVkNpSjU41et0/dgv4mvkmBUfUJqV1sk94ysm0/NOTe51jLMAZLbcL9HeFpOHTNNWOr2tifRqdjdji/Vc3L8iAOEvZF6nnwdkd8PFcbchv7MtnvCn15mu7yUvQtTGIHIAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjmND2q7W4WmV8+ZdGDabhUveus/cr7318e5eLQG5yb41xlOclGEU5SlJpRjFLdtt9yK0cX+3q1S+NGM39AxpNxl/b29V7Xb9VJtL4t+Oy63EHiblaq3VDfHwN+lMX71q8HbJd/nyrovVrc8GwBu+yXZfJ1TIVGJDfudlkt/Z0w3+3N/6d78DUUcvPH2nN7PmXPy7c/Lv15d+m+25aXhdmaQ8RVaPJJRSldXPZZXO/07k+rfhut4+C6IDedkezWPpeLDGxo+7H3pza9+2xpc1kvV7fJJLwN6cUzkAAAAAAAAAAAAAAAAAAAAAAAAAAAGHI832k7c6dpyay8mEbUvzMHz3vy+rju18XsvU1nGW62vRcudE512R9l79cpQnyvIrTXMuuzTZVZsCXe1nHHIuUq9Lq+jQfT21vLO9r0h1jD/ABfIijOzbb7JW5Fk7bZ9ZWWSlOcvjJ9T4GAAAAyjsafn249sLseydV1b3hZCTjOL+KOsALGcL+Kkc/kxNQ5a859IWLZVZPpt+jZ6dz8Nu4lWMikMJtNNNpp7pro014p+ZZjg727/AKTx/YZMl9Pxorn876t9ldt57tKXq0/0tkEkAwjIAAAAAAAAAAAAAAAAAAAAAAAAGv13SKs7HtxclOVFySmotptKSktn4dUjylXCPRI/8Fzesr8rf/Oe7AHhZ8JNDa/qO3wvy/8A6Go1LgfpVn5mWTjv9ixTj81NN/iSiAK49pOCGdjpzwrIZkF15NvY3/KMm4y+9PyXgRjl4tlM5V3Vzqtg9pwsjKM4vycX1Rdto8r257DYmrUuN8eTIivqsmCXta34L9qH7L+Wz6oKjg2/abQL9OyZ4uVHlsh1TW/JZBvpZBvvi9vls0+qaNQAN12Q1+em51GXXu/ZT9+K/wB5U+k4fOO/wez8DSmUBdvDyI21wsrlzV2QjOEl3SjJbp/cz7kf8ENWeTo1Kk9540540vPaL5oL5QnFfI9+BkAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAjvjP2SWfgTurjvl4cXbW19qdSW9lXr0W69YrzZWFl35x3XUp3220pYWpZmNFbQqvkq15VyfNBfwyQGjMowZQE9/k2ZW+Pn1ddoXVWenvwlH/xomZEJfk0xfJqT8HPHSfhuldv/ADRNqAyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEirfHGpR1zJa7510Sfx9hBf6ItHIqtxnylbrmZtttX7Kvp5xphv8A4t18gPDmUYOUVv0XVvuS72BYr8nbCcNNuua/P5cuX1jCEY/5uYlc8/2C0b6BpuJjSSU66V7Tb+1lvOfXx9+Uj0AAAAAAAAAAAAAAAAAAAAADz/bPtVRpWLLJyd315K647c9tjXSEd/g3v4JP4Ab/AHMlbdR446pObdEMeivf3YckrJbeUpyfV+qSO5o/HfNhL/bcai+vxdTnTZ8erlF/DZfECwwPHdkeI2nao1Ci115DX9XuSha/3evLP+638j16YHIDcAADjJgdTV9QrxqLci57VUVysm/HljFt7evQprq2dLJyLsiz85fbO2Xjs5yctvxJl499s00tLxp7vdTy3Fp9Fs4UP132k/hHzZB7AwSDwX7LvP1KFtkd8bCausfhKxP6qv8AiXN8INeJ4rStOtyrq8fHg7L7pqEILxfm/JJbtvwSbLY9geytelYVeNB81n277NtvaXS738F0S9EvUD0kTkYRkAAAAAAAAAAAAAAAAAAAMMrp+URqM56lTjt/VUYylFft2TlzS+6EV8ixjII/KI7Nz9rRqNcW6nBY97S35JKTlXJ+SfM47+aXmgIUMGTAHKE2mmns09010afmmSl2I4y5WGo06ipZmOuis3X0qC2/WfSxfvbP18CKzIFwezfbLT9Rinh5MJz261SfJdH0dcuvzXT1PQblH1L70d+OuZaWyyshLbbZXWpbeW24FxdR1XHxoOeTdXTBfpWzjBffJkSdvuNFUITo0fey1pxeVKO1VfrXGXWcvVrb94giy2Um5TblJ98pNuT+LZxA5XWynKUpycpyk5SlJtylJvdybfVtt959MLDsvshVTCVltklGEIJuUpPuSRuuyXYzO1Wzlw6m609p3z3jRX8ZeL/ZW79CxnYDh3iaRDmj9dmTjtZkzS328Y1x/Qj+L8W+mwdDhVw7hpVXtshRnqNsdpyXWNMHt9VB/wA5ePw75DSCRkAAAAAAAAAAAAAAAAAAAAAAHWzsOu+udV0I2VWRcZwkt4yi11TR2QBXzttwTyKpyt0h+3obb+jzko3VryjOXSaXXvafd9rvIv1PRMrFbWVjX0bPb62qcFvvt0bWz+RdI4ygn3roBSAbF07dIxpveePTN+cqq5P72jj/AEFif8pj/wDRp/8AQFLkjcad2V1DJ2+j4WTYn3SjTZyfxtbfiXCpw64fYrhD92MY/wAj7coFZ9G4Larfs71TiQff7WxTs281Cvf7m0ST2Y4LaditTy3PNtXhZ7lCfmqovr/ebXTuJRAHwxcWuqEa6oRrrgtowhFRhFeSiuiR9wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/9k="}
 ];
 const recentPatients = [
-  {id: 0, info: {name: "Rayyan Khalique", dOB: new Date(2009, 3, 3), sex: "male"}},
-  {id: 1, info: {name: "Dylan Patel", dOB: new Date(2009, 2, 20), sex: "male"}},
-  {id: 2, info: {name: "Trevon Nguyen", dOB: new Date(2009, 5, 15), sex: "male"}}
+  {
+    id: 0,
+    dateCreated: new Date(2024, 9, 25),
+    firstName: "Rayyan",
+    middleName: "Midhat Abdul",
+    lastName: "Khalique",
+    dateOfBirth: new Date(2009, 3, 3),
+    sex: "male"
+  },{
+    id: 1,
+    dateCreated: new Date(2024, 8, 30),
+    firstName: "Dylan",
+    middleName: "Bhavesh",
+    lastName: "Patel",
+    dateOfBirth: new Date(2009, 2, 3),
+    sex: "male"
+  },{
+    id: 2,
+    dateCreated: new Date(2024, 9, 31),
+    firstName: "Trevon",
+    middleName: null,
+    lastName: "Nguyen",
+    dateOfBirth: new Date(2009, 5, 20),
+    sex: "male"
+  }
 ];
