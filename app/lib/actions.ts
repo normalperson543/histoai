@@ -4,10 +4,13 @@ import fs from "fs";
 import path from "path";
 import { promisify } from "util";
 import prisma from "./db";
+import { signIn, register } from "@/auth";
+import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const writeFile = promisify(fs.writeFile);
 const { mkdir } = require('node:fs/promises');
-const { join } = require('node:path');
 
 
 // https://stackoverflow.com/a/35922073
@@ -78,4 +81,30 @@ export async function initImagesDirectory() {
     const dirCreation = await mkdir(projectFolder, { recursive: true });
     
     return dirCreation;
+}
+//https://github.com/vercel/next-learn/blob/main/dashboard/final-example/app/lib/actions.ts
+export async function authenticate(prevState: string | undefined, formData: FormData) {
+    try {
+        await signIn('credentials', formData);
+    } catch (error) {
+        if (error instanceof AuthError) {
+            switch (error.type) {
+                case 'CredentialsSignin':
+                return 'The username or password you entered was incorrect. Please try again.';
+                default:
+                return 'Something went wrong. Please try again later.';
+            }
+        }
+    }
+    redirect('/');
+}
+export async function createAccount(prevState: string | undefined, formData: FormData) {
+    try {
+        await register(formData);
+        redirect('/login');
+    } catch (error) {
+        if (error instanceof Error) {
+            return error.message;
+        }
+    }
 }
