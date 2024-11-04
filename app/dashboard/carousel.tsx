@@ -41,34 +41,38 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
     }
 
     return (
-        <div className="group overflow-hidden relative h-full m-auto">
+        <div className="overflow-hidden relative h-full m-auto">
             <div className={`flex transition duration-700 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
                 {slides.map((s:any) => {
                     if(carouselType === "images") {
-                        return <div key={s.id} className="min-w-full min-h-full m-auto"><img className="object-fill m-auto" src = {s.imageUrl}/></div>
+                        return <div key={s.id} className="min-w-full min-h-full m-auto"><Link href={`/reports/${s.id}`}><img className="transition ease-in object-fill m-auto hover:scale-75" src = {s.imageUrl}/></Link></div>
                     } else if (carouselType === "patients") {
                         return (
-                            <div key={s.id} className="flex flex-col items-center justify-center text-center text-sm mx-auto px-10 min-w-full">
+                            <div key={s.id} className="group flex flex-col items-center justify-center text-center text-sm mx-auto px-10 min-w-full">
+                                <Link href={`/patients/${s.id}`}>
                                     <h1 className="text-4xl group-hover:text-sm transition-all duration-500 ease-in-out">
-                                        <strong>Name:</strong> <br></br>
-                                        {s.firstName}{s.middleName && ` ${s.middleName.substring(0,1)}.`} {s.lastName}
+                                            <strong>Name:</strong> <br></br>
+                                            {s.firstName}{s.middleName && ` ${s.middleName.substring(0,1)}.`} {s.lastName}
                                     </h1>
-                                <p className="opacity-0 group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-500 group-hover:2000 transition-opacity duration-500">
-                                    <strong>Date of Birth:</strong><br/>
-                                    {s.dateOfBirth.toLocaleDateString()}<br/>
-                                    <strong>Sex:</strong><br/>
-                                    {s.sex}
-                                </p>
+                                    <p className="opacity-0 group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-500 group-hover:2000 transition-opacity duration-500">
+                                        <strong>Date of Birth:</strong><br/>
+                                        {s.dateOfBirth.toLocaleDateString()}<br/>
+                                        <strong>Sex:</strong><br/>
+                                        {s.sex}
+                                    </p>
+                                </Link>
                             </div>
                         )
                     }
                 })}
             </div>
 
-            <div className='absolute top-0 h-full w-full justify-between items-center flex px-10 text-3xl text-hblue-light'>
+            <div className='absolute top-0 left-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue-light'>
                 <button onClick={previousSlide}>
                     <BsArrowLeftCircleFill/>
                 </button>
+            </div>
+            <div className='absolute top-0 right-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue-light'>
                 <button onClick={nextSlide}>
                     <BsArrowRightCircleFill/>
                 </button>
