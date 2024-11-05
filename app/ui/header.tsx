@@ -44,9 +44,11 @@ export default function Header() {
                     </button>
                 </div>
                 <div className="flex shrink justify-end">
-                    <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
-                        Sign up
-                    </button>
+                    <Link href={"register"}>
+                        <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
+                            Sign up
+                        </button>
+                    </Link>
                     <Link href="/login">
                         <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
                             Log in
