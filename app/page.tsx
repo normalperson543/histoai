@@ -1,7 +1,7 @@
 import Link from 'next/link';
 'use client';
 
-export default function page() {
+export default function Page() {
   return (
     <main>
       <div className='container mx-auto px-4'>
