@@ -22,9 +22,9 @@ import { useState } from 'react';
 
 export default function Carousel({slides, carouselType} : {slides: any, carouselType: string}) {
 
-    let [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useState(0);
 
-    let previousSlide = () => {
+    const previousSlide = () => {
         if(current === 0) {
             setCurrent(slides.length - 1)
         } else {
@@ -32,7 +32,7 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
         }
     }
 
-    let nextSlide = () => {
+    const nextSlide = () => {
         if(current === slides.length - 1) {
             setCurrent(0)
         } else {

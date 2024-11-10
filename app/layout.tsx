@@ -1,4 +1,3 @@
-import Nav from "./ui/old-header"
 import './stylesheets/globals.css';
 import type { Metadata } from 'next';
 import { Red_Hat_Text } from 'next/font/google';

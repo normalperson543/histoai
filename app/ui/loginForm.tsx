@@ -11,8 +11,7 @@ export default function LoginForm() {
     }
 
     return (
-        <>
-        <form onSubmit={onSubmit}>
+        <form action={onSubmit}>
             <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
                 <div className="md:w-1/3 max-w-sm">
                     <img
@@ -29,6 +28,7 @@ export default function LoginForm() {
                         placeholder="UserName"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
+                        required
                     />
                     </label>
                     <label>
@@ -38,6 +38,7 @@ export default function LoginForm() {
                         placeholder="Password"
                         value={userPassword}
                         onChange={(e) => setUserPassword(e.target.value)}
+                        required
                     />
                     </label>
                     <div className="mt-4 flex justify-between font-semibold text-sm">
@@ -61,6 +62,5 @@ export default function LoginForm() {
                 </div>
             </section> 
         </form>
-        </>
     )
 }
