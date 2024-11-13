@@ -1,7 +1,7 @@
 
 import Link from "next/link";
-export default function ReportDetailPage({ params }: {params:any}) {
-    const { id } = params;  // Extract the dynamic segment
+export default async function ReportDetailPage({ params }: {params: Promise<{id: number}>}) {
+    const id = (await params).id  // Extract the dynamic segment
     const report = reports[id];
     const patient = patients.find(patient => patient.id === report.patientId)
     return (

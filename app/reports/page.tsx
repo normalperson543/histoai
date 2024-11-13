@@ -10,17 +10,18 @@ export default function ReportPage() {
         <ul className='block w-[50%] mx-auto mt-10 divide-y divide-hblue/[0.25] border-y border-hblue-light/[0.5] shadow-lg'>
           <li className='p-1 bg-hblue-light/[0.2] px-2'>
             <div className='flex col-2'>
-              <p className='text-left w-[50%]'>Report ID</p>
+              <p className='text-left w-[50%]'>Patient Name</p>
               <p className='text-right w-[50%]'>Date Added</p>
             </div>
           </li>  
             
           {reports.map(obj => {
+            const patient = patients.find(patient => patient.id === obj.patientId);
             return(
               <li key={obj.id} className='px-3 py-1 hover:bg-hblue/[0.1]'>
                 <Link href={`/reports/${obj.id}`}>
                   <div className='flex col-2'>
-                    <p className='text-left w-[50%]'>{obj.id}</p>
+                    <p className='text-left w-[50%]'>{patient.firstName} {patient.middleName && `${patient.middleName.substring(0,1)}.`} {patient.lastName}</p>
                     <p className='text-right w-[50%]'>{obj.dateCreated.toLocaleDateString()}</p>
                   </div>
                 </Link>
@@ -52,7 +53,7 @@ export default function ReportPage() {
   ]
   const patients = [
     {
-      id: 0,
+      id: "0",
       dateCreated: new Date(2024, 9, 25),
       firstName: "Rayyan",
       middleName: "Midhat Abdul",
@@ -60,7 +61,7 @@ export default function ReportPage() {
       dateOfBirth: new Date(2009, 3, 3),
       sex: "male"
     },{
-      id: 1,
+      id: "1",
       dateCreated: new Date(2024, 8, 30),
       firstName: "Dylan",
       middleName: "Bhavesh",
@@ -68,7 +69,7 @@ export default function ReportPage() {
       dateOfBirth: new Date(2009, 2, 3),
       sex: "male"
     },{
-      id: 2,
+      id: "2",
       dateCreated: new Date(2024, 9, 31),
       firstName: "Trevon",
       middleName: null,

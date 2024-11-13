@@ -26,8 +26,8 @@ export default function AddPatient(){
                 <input type="date" value={dOB} onChange={(e) => setDOB(e.target.value)} className="mx-auto border rounded-lg shadow-lg w-[50%]" required/>
             </label>
             <label className="grid grid-cols-2 py-5">Sex
-                <select value={sex} onChange={(e) => setSex(e.target.value)} className="mx-auto border rounded-lg shadow-lg w-[50%]" required>
-                    <option disabled selected value="">Select</option>
+                <select value={sex} onChange={(e) => setSex(e.target.value)} className="mx-auto border rounded-lg shadow-lg w-[50%]" defaultValue={"select"} required>
+                    <option disabled selected value="select">Select</option>
                     <option value={"male"} key={"male"}>Male</option>
                     <option value={"female"} key={"female"}>Female</option>
                 </select>

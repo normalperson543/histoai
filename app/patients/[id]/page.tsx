@@ -1,6 +1,6 @@
 import Link from "next/link";
-export default function PatientDetailPage({ params }: {params:any}) {
-    const { id } = params;  // Extract the dynamic segment
+export default async function PatientDetailPage({ params }: {params: Promise<{id: number}>}) {
+    const id = (await params).id;  // Extract the dynamic segment
     const patient = patients[id];
     const reportRows = patient.reports?.map(report => 
       <Link href={`/reports/${report.id}`}>
@@ -36,7 +36,7 @@ export default function PatientDetailPage({ params }: {params:any}) {
             </div>
         </div>
         <h1 className="mt-10 text-4xl font-semibold">Reports</h1>
-        <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] mt-2">
+        <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] mt-2" key={"header"}>
           <div className="grid grid-cols-2 gap-4 text-center">
             <h1 className="font-semibold">Report ID</h1>
             <h1 className="font-semibold">Date Added</h1>

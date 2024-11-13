@@ -17,8 +17,8 @@ export default function AddReport({patients} : {patients : any}) {
         <>
         <form onSubmit={handleSubmit} className="border rounded-lg shadow-lg p-6 bg-hblue-light/[0.4] grid grid-cols-1">
             <label className="grid grid-cols-2 py-5">Patient
-                <select value={patient} onChange={(e) => setPatient(e.target.value)} className="mx-auto border rounded-lg shadow-lg w-[50%]" required>
-                    <option disabled selected value={""}>Select</option>
+                <select value={patient} onChange={(e) => setPatient(e.target.value)} className="mx-auto border rounded-lg shadow-lg w-[50%]" defaultValue={"select"} required>
+                    <option disabled selected value={"select"}>Select</option>
                     {patients.map((patient:any) => (
                         <option key={patient.id} value={patient.id}>{patient.firstName} {patient?.middleName && `${patient.middleName.substring(0,1)} `}{patient.lastName}</option>
                     ))}
