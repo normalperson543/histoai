@@ -1,9 +1,9 @@
 import Link from "next/link";
-export default async function PatientDetailPage({ params }: {params: Promise<{id: number}>}) {
+export default async function PatientDetailPage({ params }: Readonly<{params: Promise<{id: number}>}>) {
     const id = (await params).id;  // Extract the dynamic segment
     const patient = patients[id];
-    const reportRows = patient.reports?.map(report => 
-      <Link href={`/reports/${report.id}`}>
+    const reportRows = patient.reports?.map((report, index) => 
+      <Link href={`/reports/${report.id}`} key={"report " + index}>
         <div className="grid grid-cols-2 gap-4 text-center items-center justify-center my-8 hover:bg-hblue-light/[0.2]" key={`${report.id}`}>
           <p>{report.id}</p>
           <p className="">{report.dateCreated.toLocaleDateString('en-US', { year: "numeric", month: "long", day: "numeric" })}</p>
@@ -13,7 +13,7 @@ export default async function PatientDetailPage({ params }: {params: Promise<{id
     return (
       <main className="flex flex-col items-center pt-10">
         <h1 className="text-center text-5xl font-bold mb-8">Patient Details</h1>
-        <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4]">
+        <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.5] border-hblue-light/[0.6]">
             <p className="text-lg font-semibold mb-4 text-center">Patient ID: <span className="font-normal text-gray-700">{patient.id}</span></p>
             
             <div className="grid grid-cols-2 gap-4 text-center">
@@ -36,14 +36,12 @@ export default async function PatientDetailPage({ params }: {params: Promise<{id
             </div>
         </div>
         <h1 className="mt-10 text-4xl font-semibold">Reports</h1>
-        <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] mt-2" key={"header"}>
+        <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.5] border-hblue-light/[0.6] mt-2" key={"header"}>
           <div className="grid grid-cols-2 gap-4 text-center">
             <h1 className="font-semibold">Report ID</h1>
             <h1 className="font-semibold">Date Added</h1>
           </div>
-          {reportRows ? (
-            reportRows
-          ) : (
+          {reportRows || (
             <h1 className="text-xl text-center">No Reports Found for this Patient</h1>
           )}
         </div>

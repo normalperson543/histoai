@@ -21,7 +21,7 @@ export default function ReportPage() {
               <li key={obj.id} className='px-3 py-1 hover:bg-hblue/[0.1]'>
                 <Link href={`/reports/${obj.id}`}>
                   <div className='flex col-2'>
-                    <p className='text-left w-[50%]'>{patient.firstName} {patient.middleName && `${patient.middleName.substring(0,1)}.`} {patient.lastName}</p>
+                    <p className='text-left w-[50%]'>{patient?.firstName} {patient?.middleName && `${patient.middleName.substring(0,1)}.`} {patient?.lastName}</p>
                     <p className='text-right w-[50%]'>{obj.dateCreated.toLocaleDateString()}</p>
                   </div>
                 </Link>
@@ -32,14 +32,14 @@ export default function ReportPage() {
         </ul>
         {addNewReport ? (
           <div className='relative'>
-            <button onClick={() => setAddNewReport(!addNewReport)} className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1 absolute top-5 right-[25%]'>Undo</button>
+            <button onClick={() => setAddNewReport(!addNewReport)} className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-2 py-1 absolute top-5 right-[25%] border-hblue-light/[0.5]'>Undo</button>
             <div className='inline-block w-[50%] absolute top-16 inset-x-[25%]'>
               <AddReport patients={patients}/>
             </div>
           </div>
         ) : (
           <div className='relative'>
-            <button onClick={() => setAddNewReport(!addNewReport)} className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1 absolute top-5 right-[25%]'>Add Report</button>
+            <button onClick={() => setAddNewReport(!addNewReport)} className='border rounded-md shadow-lg bg-hblue-light/[0.4] border-hblue-light/[0.5] px-2 py-1 absolute top-5 right-[25%]'>Add Report</button>
           </div>
         )}
       </main>

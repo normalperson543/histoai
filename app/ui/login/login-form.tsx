@@ -12,11 +12,11 @@ export default function LoginForm() {
             action={formAction}
             >
                 <label>
-                    Username
+                    Username{' '}
                     <input name="username" type="text" />
                 </label>
                 <label>
-                    Password
+                    Password{' '}
                     <input name="password" type="password" />
                 </label>
                 <button>{isPending ? "Signing in..." : "Sign in"}</button>

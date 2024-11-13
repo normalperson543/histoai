@@ -2,8 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 export default function LoginForm() {
-    const [userName, setUserName] = useState();
-    const [userPassword, setUserPassword] = useState();
+    const [userName, setUserName] = useState("");
+    const [userPassword, setUserPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
 
     function onSubmit() {
@@ -16,7 +16,7 @@ export default function LoginForm() {
                 <div className="md:w-1/3 max-w-sm">
                     <img
                     src="./logo.svg"
-                    alt="HistoAI image"
+                    alt="HistoAI"
                     />
                     <h1 className="text-4xl text-center">Histo<span className="font-semibold">AI</span></h1>
                 </div>

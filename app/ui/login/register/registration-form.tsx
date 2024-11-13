@@ -9,19 +9,19 @@ export default function RegistrationForm() {
             action={formAction}
             >
                 <label>
-                    Username
+                    Username{' '}
                     <input name="username" type="text" />
                 </label>
                 <label>
-                    Password
+                    Password{' '}
                     <input name="password" type="password" />
                 </label>
                 <label>
-                    First name
+                    First name{' '}
                     <input name="firstName" type="text" />
                 </label>
                 <label>
-                    Last name
+                    Last name{' '}
                     <input name="lastName" type="text" />
                 </label>
                 <button>Register</button>

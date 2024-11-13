@@ -1,6 +1,5 @@
 "use client";
-import { BsArrowRightCircleFill } from "react-icons/bs";
-import { BsArrowLeftCircleFill } from "react-icons/bs";
+import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
 import Link from "next/link";
 import { useState } from 'react';
 
@@ -20,7 +19,7 @@ import { useState } from 'react';
 //   info: Patient
 // }
 
-export default function Carousel({slides, carouselType} : {slides: any, carouselType: string}) {
+export default function Carousel({slides, carouselType} : Readonly<{slides: any, carouselType: string}>) {
 
     const [current, setCurrent] = useState(0);
 
@@ -45,7 +44,7 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
             <div className={`flex transition duration-700 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
                 {slides.map((s:any) => {
                     if(carouselType === "images") {
-                        return <div key={s.id} className="min-w-full min-h-full m-auto"><Link href={`/reports/${s.id}`}><img className="transition ease-in object-fill m-auto hover:scale-75" src = {s.imageUrl}/></Link></div>
+                        return <div key={s.id} className="min-w-full min-h-full m-auto"><Link href={`/reports/${s.id}`}><img alt="" className="transition ease-in object-fill m-auto hover:scale-75" src = {s.imageUrl}/></Link></div>
                     } else if (carouselType === "patients") {
                         return (
                             <div key={s.id} className="group flex flex-col items-center justify-center text-center text-sm mx-auto px-10 min-w-full">
