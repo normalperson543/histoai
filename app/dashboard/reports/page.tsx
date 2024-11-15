@@ -1,9 +1,8 @@
 "use client";
 import { useState } from 'react';
 import Link from 'next/link';
-import AddReport from '../ui/addReport';
+import AddReport from '@/app/ui/addReport';
 export default function ReportPage() {
-    const [addNewReport, setAddNewReport] = useState(false);
     return (
       <main>
         <h1 className='text-center text-5xl pt-10'>Registered Reports</h1>
@@ -18,7 +17,7 @@ export default function ReportPage() {
           {reports.map(obj => {
             return(
               <li key={obj.id} className='px-3 py-1 hover:bg-hblue/[0.1]'>
-                <Link href={`/reports/${obj.id}`}>
+                <Link href={`/dashboard/reports/${obj.id}`}>
                   <div className='flex col-2'>
                     <p className='text-left w-[50%]'>{obj.id}</p>
                     <p className='text-right w-[50%]'>{obj.dateCreated.toLocaleDateString()}</p>
@@ -29,18 +28,9 @@ export default function ReportPage() {
             )
           })}
         </ul>
-        {addNewReport ? (
-          <div className='relative'>
-            <button onClick={() => setAddNewReport(!addNewReport)} className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1 absolute top-5 right-[25%]'>Undo</button>
-            <div className='inline-block w-[50%] absolute top-16 inset-x-[25%]'>
-              <AddReport patients={patients}/>
-            </div>
-          </div>
-        ) : (
-          <div className='relative'>
-            <button onClick={() => setAddNewReport(!addNewReport)} className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1 absolute top-5 right-[25%]'>Add Report</button>
-          </div>
-        )}
+        <Link href="/dashboard/reports/new">
+          <button className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1'>Add Report</button>
+        </Link>
       </main>
     );
   }

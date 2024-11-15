@@ -1,0 +1,59 @@
+import Link from "next/link";
+import { fetchPatient } from "@/app/lib/data";
+import { findPatientReportsUnderPatient } from "@/app/lib/data";
+export default async function PatientDetailPage({ params }: {params:any}) {
+  const { id } = await params;  // Extract the dynamic segment
+  console.log(id);
+  const patient = await fetchPatient(id);
+  if (!patient) {
+    return (<div>Couldn't find a patient with this ID.</div>)
+  }
+  const patientReports = await findPatientReportsUnderPatient(id);
+  const reportRows = patientReports.map(report => 
+    <Link href={`/reports/${report.id}`}>
+      <div className="grid grid-cols-2 gap-4 text-center items-center justify-center my-8 hover:bg-hblue-light/[0.2]" key={`${report.id}`}>
+        <p>{report.id}</p>
+        <p className="">{report.dateGenerated.toLocaleDateString('en-US', { year: "numeric", month: "long", day: "numeric" })}</p>
+      </div>
+    </Link>
+  );
+  return (
+    <main className="flex flex-col items-center pt-10">
+      <h1 className="text-center text-5xl font-bold mb-8">Patient Details</h1>
+      <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4]">
+          <p className="text-lg font-semibold mb-4 text-center">Patient ID: <span className="font-normal text-gray-700">{patient.id}</span></p>
+          
+          <div className="grid grid-cols-2 gap-4 text-center">
+            <div>
+                <h2 className="font-semibold">Patient Name</h2>
+                <p className="text-gray-700">
+                {patient.firstName}{patient.middleName && ` ${patient.middleName}`} {patient.lastName}
+                </p>
+            </div>
+            <div>
+                <h2 className="font-semibold">Date of Birth</h2>
+                <p className="text-gray-700">
+                {patient.dateOfBirth.toLocaleDateString('en-US', { year: "numeric", month: "long", day: "numeric" })}
+                </p>
+            </div>
+            <div className="col-span-2">
+                <h2 className="font-semibold">Sex</h2>
+                <p className="text-gray-700">{patient.sex}</p>
+            </div>
+          </div>
+      </div>
+      <h1 className="mt-10 text-4xl font-semibold">Reports</h1>
+      <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] mt-2">
+        <div className="grid grid-cols-2 gap-4 text-center">
+          <h1 className="font-semibold">Report ID</h1>
+          <h1 className="font-semibold">Date Added</h1>
+        </div>
+        {reportRows ? (
+          reportRows
+        ) : (
+          <h1 className="text-xl text-center">No Reports Found for this Patient</h1>
+        )}
+      </div>
+    </main>
+  );
+}

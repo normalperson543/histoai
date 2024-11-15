@@ -24,6 +24,8 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
 
     const [current, setCurrent] = useState(0);
 
+    if (slides.length == 0) return (<div>Nothing to see here ✅</div>)
+    
     const previousSlide = () => {
         if(current === 0) {
             setCurrent(slides.length - 1)
@@ -45,7 +47,11 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
             <div className={`flex transition duration-700 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
                 {slides.map((s:any) => {
                     if(carouselType === "images") {
-                        return <div key={s.id} className="min-w-full min-h-full m-auto"><Link href={`/reports/${s.id}`}><img className="transition ease-in object-fill m-auto hover:scale-75" src = {s.imageUrl}/></Link></div>
+                        return (
+                            <div key={s.id} className="min-w-full min-h-full m-auto">
+                                <Link href={`/reports/${s.id}`}><img className="transition ease-in object-fill m-auto hover:scale-75" src = {s.imageUrl}/></Link>
+                            </div>
+                        )
                     } else if (carouselType === "patients") {
                         return (
                             <div key={s.id} className="group flex flex-col items-center justify-center text-center text-sm mx-auto px-10 min-w-full">

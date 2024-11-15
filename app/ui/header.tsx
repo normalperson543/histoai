@@ -1,7 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import SmProfilePicture from "./profile-picture";
-export default function Header() {
+import { auth, signOut } from "@/auth";
+import { fetchUser } from "@/app/lib/data";
+
+export default async function Header() {
+    const session = await auth();
+    let fullName;
+    if (session) {
+        const user = await fetchUser(session?.user?.id as string);
+        fullName = user?.firstName + " " + user?.lastName;
+    }
     return (
         <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2 bg-hblue">
             <div className="flex grow justify-start">
@@ -25,35 +34,57 @@ export default function Header() {
                         <strong>Dashboard</strong>
                     </button>
                 </Link>
-                <Link href="/patients">
+                <Link href="/dashboard/patients">
                     <button className="flex items-center h-full px-3 py-1 shrink">
                         <strong>Patients</strong>
                     </button>
                 </Link>
-                <Link href="/reports">
+                <Link href="/dashboard/reports">
                     <button className="flex items-center h-full px-3 py-1 shrink">
                         <strong>Reports</strong>
                     </button>
                 </Link>
             </div>
             <div className="flex grow justify-end">
+                {
+                    session && (
+                        <div className="flex shrink justify-end">
+                            <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
+                                <SmProfilePicture username={fullName as string} /> 
+                                {fullName}
+                            </button>
+                        </div>
+                    )
+                }
                 <div className="flex shrink justify-end">
-                    <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
-                        <SmProfilePicture username="ab" /> 
-                        placeholder
-                    </button>
-                </div>
-                <div className="flex shrink justify-end">
-                    <Link href={"register"}>
-                        <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
-                            Sign up
-                        </button>
-                    </Link>
-                    <Link href="/login">
-                        <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
-                            Log in
-                        </button>
-                    </Link>
+                    {
+                        !session && (
+                            <>
+                                <Link href={"register"}>
+                                    <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
+                                        Sign up
+                                    </button>
+                                </Link>
+                                <Link href="/login">
+                                    <button className="flex gap-2 items-center h-full px-3 py-1 shrink">
+                                        Log in
+                                    </button>
+                                </Link>
+                            </>
+                        )
+                    }
+                    {
+                        session && (
+                        <form
+                        action={async () => {
+                            "use server"
+                            await signOut()
+                        }}
+                        >
+                            <button className="flex gap-2 items-center h-full px-3 py-1 shrink" type="submit">Sign out</button>
+                        </form>
+                        )
+                    }
                 </div>
             </div>
         </header>

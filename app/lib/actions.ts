@@ -8,7 +8,6 @@ import { signIn, register } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-
 const writeFile = promisify(fs.writeFile);
 const { mkdir } = require('node:fs/promises');
 
@@ -31,7 +30,7 @@ export async function uploadImage(formData: FormData) {
 
     return imagePath;
 }
-export async function addPatient(formData: FormData) {
+export async function addPatient(prevState: any, formData: FormData) {
     const dateObject = new Date(formData.get("dateOfBirth") as string);
     const dateToISOString = dateObject.toISOString();
     const createdPatient = await prisma.patient.create({

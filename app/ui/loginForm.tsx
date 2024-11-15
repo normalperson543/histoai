@@ -1,17 +1,16 @@
 "use client";
 import { useState } from "react";
+
+import { authenticate } from '@/app/lib/actions';
+import { useActionState } from 'react';
+
 import Link from "next/link";
 export default function LoginForm() {
-    const [userName, setUserName] = useState();
-    const [userPassword, setUserPassword] = useState();
+    const [error, formAction, isPending] = useActionState(authenticate, undefined);
     const [rememberMe, setRememberMe] = useState(false);
 
-    function onSubmit() {
-        alert("Hello3")
-    }
-
     return (
-        <form action={onSubmit}>
+        <form action={formAction}>
             <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
                 <div className="md:w-1/3 max-w-sm">
                     <img
@@ -25,9 +24,8 @@ export default function LoginForm() {
                     <input
                         className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded bg-hblue-light/[0.4]"
                         type="text"
-                        placeholder="UserName"
-                        value={userName}
-                        onChange={(e) => setUserName(e.target.value)}
+                        name="username"
+                        placeholder="Username"
                         required
                     />
                     </label>
@@ -35,9 +33,8 @@ export default function LoginForm() {
                     <input
                         className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4 bg-hblue-light/[0.4]"
                         type="password"
+                        name="password"
                         placeholder="Password"
-                        value={userPassword}
-                        onChange={(e) => setUserPassword(e.target.value)}
                         required
                     />
                     </label>
@@ -59,6 +56,13 @@ export default function LoginForm() {
                     Don&apos;t have an account?{" "}
                     <Link href={'/register'}><span className="text-red-600 hover:underline hover:underline-offset-4">Register</span></Link>
                     </div>
+                    {
+                        error && (
+                                <div className="bg-red-300 p-3">
+                                    {error}
+                                </div>
+                            )
+                        }
                 </div>
             </section> 
         </form>
