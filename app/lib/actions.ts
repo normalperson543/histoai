@@ -8,6 +8,7 @@ import { signIn, register } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { predictOSCC } from "./model";
 const writeFile = promisify(fs.writeFile);
 const { mkdir } = require('node:fs/promises');
 
@@ -50,20 +51,22 @@ export async function deletePatient(patientId: string) {
     })
     return deletedPatient;
 }
-export async function submitReport(formData: FormData) {
-    const image = formData.get("imageFile");
-    const createdReport = await prisma.report.create({
-        "data": {
-            patientId: formData.get("patientId") as string,
-            userId: formData.get("userId") as string,
-            containsOSCC: formData.get("containsOSCC") as unknown as boolean,
-            confidenceRate: formData.get("confidenceRate") as unknown as number,
-            survey: formData.get("survey") as string,
-            notes: formData.get("notes") as string,
-        }
-    });
-    const imagePath = uploadImage(image as File, formData.get("patientId") as string, createdReport.id);
-    return createdReport;
+export async function submitReport(userId: string, formData: FormData) {
+        const image = formData.get("imageFile");
+        const createdReport = await prisma.report.create({
+            "data": {
+                patientId: formData.get("patientId") as string,
+                userId: userId,
+                containsOSCC: true,
+                confidenceRate: 0,
+                survey: "",
+                notes: "",
+            }
+        });
+        const imagePath = await uploadImage(image as File, formData.get("patientId") as string, createdReport.id);
+        const prediction = await predictOSCC(image as File);
+        console.log("done");
+        //redirect(`/dashboard/reports/${createdReport.id}`)
 }
 export async function deleteReport( analysisId: string ) {
     const deletedReport = await prisma.report.delete({
