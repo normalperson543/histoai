@@ -17,10 +17,10 @@ export default async function Home() {
         <h1 className='mx-auto'>Recent Patients</h1>
       </div>
       <div className='flex flex-row'>
-        <div className='w-[40%] mx-auto'>
+        <div className='w-[40%] mx-auto border-2 border-hblue rounded-2xl shadow-lg'>
           <Carousel slides={recentReports} carouselType={"images"}/>
         </div>
-        <div className='w-[40%] mx-auto bg-clip-content'>
+        <div className='w-[40%] mx-auto bg-clip-content bg-hblue rounded-2xl shadow-lg'>
           <Carousel slides={recentPatients} carouselType={"patients"}/>
         </div>
       </div>

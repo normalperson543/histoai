@@ -1,19 +1,28 @@
-import { addPatient } from "../lib/actions"
+'use client';
+import { addPatient } from "@/app/lib/actions"
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { useActionState } from "react";
-import { auth } from "@/auth";
-
-export default function AddPatientForm(){
-    const session = auth();
-    const addPatientWithId = addPatient.bind(null, )
-    const [error, formAction, isPending] = useActionState(addPatient, undefined);
+async function handleSubmit(authId: string, formData: FormData) {
+    try {
+        const createdPatient = addPatient(authId, formData);
+        const patientId = (await createdPatient).id;
+        redirect(`/dashboard/patients/${patientId}`);
+    } catch(error) {
+        alert(`Something went wrong. Please try again later.`);
+    }
+}
+export default function AddPatientForm({authId}: {authId: string}){
+    const handleSubmitWithId = handleSubmit.bind(null, authId)
+    
     return (
         <>
-            <form action={formAction} className="p-6 grid grid-cols-1">
+            <form action={handleSubmitWithId} className="p-6 grid grid-cols-1">
                 <label className="grid grid-cols-2 py-5">First Name
                     <input type="text" name="firstName" className="mx-auto border rounded-lg shadow-lg w-[50%]" required placeholder="first name"/>
                 </label>
                 <label className="grid grid-cols-2 py-5">Middle Name
-                    <input type="text" name="middleName" className="mx-auto border rounded-lg shadow-lg w-[50%]" placeholder="middle name"/>
+                    <input type="text" name="middleName" className="mx-auto border rounded-lg shadow-lg w-[50%]" required placeholder="middle name"/>
                 </label>
                 <label className="grid grid-cols-2 py-5">Last Name
                     <input type="text" name="lastName" className="mx-auto border rounded-lg shadow-lg w-[50%]" required placeholder="last name"/>
@@ -28,6 +37,7 @@ export default function AddPatientForm(){
                         <option value={"female"} key={"female"}>Female</option>
                     </select>
                 </label>
+                <input type="text" name="assignedUser"/>
                 <input type="submit" className="inline-block w-min py-0.5 px-1 border rounded-lg shadow-lg mx-auto bg-hblue-light/[0.8]"/>
             </form>
         </>

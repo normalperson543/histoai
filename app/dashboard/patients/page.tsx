@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { auth } from '@/auth';
 import { findAllPatients } from '@/app/lib/data';
 export default async function PatientDataPage() {
-  const patients = await findAllPatients(0, 20);
+  const patients = await findAllPatients();
   return (
     <main>
       <h2 className='text-3xl pt-10'>Registered Patients</h2>

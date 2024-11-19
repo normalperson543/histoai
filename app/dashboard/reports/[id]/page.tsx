@@ -1,7 +1,6 @@
-
 import Link from "next/link";
-export default function ReportDetailPage({ params }: {params:any}) {
-    const { id } = params;  // Extract the dynamic segment
+export default async function ReportDetailPage({ params }: {params:any}) {
+    const { id } = await params;  // Extract the dynamic segment
     const report = reports[id];
     const patient = patients.find(patient => patient.id === report.patientId)
     return (
@@ -36,6 +35,9 @@ export default function ReportDetailPage({ params }: {params:any}) {
             <div className="text-center">
                 <h1 className="font-semibold">Notes:</h1>
                 <p>{report.notes}</p>
+            </div>
+            <div className="flex items-center justify-center flex-row my-5">
+                
             </div>
         </div>
         <h1 className="text-center text-3xl font-bold mt-5">Patient</h1>

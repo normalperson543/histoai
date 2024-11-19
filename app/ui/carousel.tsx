@@ -49,13 +49,13 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
                     if(carouselType === "images") {
                         return (
                             <div key={s.id} className="min-w-full min-h-full m-auto">
-                                <Link href={`/reports/${s.id}`}><img className="transition ease-in object-fill m-auto hover:scale-75" src = {s.imageUrl}/></Link>
+                                <Link href={`/dashboard/reports/${s.id}`}><img className="transition ease-in object-fill m-auto hover:scale-75" src = {s.imageUrl}/></Link>
                             </div>
                         )
                     } else if (carouselType === "patients") {
                         return (
                             <div key={s.id} className="group flex flex-col items-center justify-center text-center text-sm mx-auto px-10 min-w-full">
-                                <Link href={`/patients/${s.id}`}>
+                                <Link href={`/dashboard/patients/${s.id}`}>
                                     <h1 className="text-4xl group-hover:text-sm transition-all duration-500 ease-in-out">
                                             <strong>Name:</strong> <br></br>
                                             {s.firstName}{s.middleName && ` ${s.middleName.substring(0,1)}.`} {s.lastName}
@@ -73,12 +73,12 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
                 })}
             </div>
 
-            <div className='absolute top-0 left-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue-light'>
+            <div className='absolute top-0 left-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue'>
                 <button onClick={previousSlide}>
                     <BsArrowLeftCircleFill/>
                 </button>
             </div>
-            <div className='absolute top-0 right-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue-light'>
+            <div className='absolute top-0 right-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue'>
                 <button onClick={nextSlide}>
                     <BsArrowRightCircleFill/>
                 </button>

@@ -64,13 +64,11 @@ export async function findPatientsUnderUser(userId: string, skip: number, take: 
     })
     return patients;
 }
-export async function findAllPatients(skip: number, take: number) {
+export async function findAllPatients() {
     const patients = prisma.patient.findMany({
         orderBy: {
             dateCreated: 'desc'
         },
-        skip: skip,
-        take: take
     });
     return patients;
 }

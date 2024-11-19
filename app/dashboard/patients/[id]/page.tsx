@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { fetchPatient } from "@/app/lib/data";
 import { findPatientReportsUnderPatient } from "@/app/lib/data";
+import { deletePatient } from "@/app/lib/actions";
+import { redirect } from "next/navigation";
+
+async function deleteAction(patientId: string, formData: FormData) {
+  'use server';
+  deletePatient(patientId);
+  redirect("/dashboard/patients");
+}
+
 export default async function PatientDetailPage({ params }: {params:any}) {
   const { id } = await params;  // Extract the dynamic segment
   console.log(id);
@@ -9,6 +18,7 @@ export default async function PatientDetailPage({ params }: {params:any}) {
     return (<div>Couldn't find a patient with this ID.</div>)
   }
   const patientReports = await findPatientReportsUnderPatient(id);
+  const deleteActionWithId = deleteAction.bind(null, id);
   const reportRows = patientReports.map(report => 
     <Link href={`/reports/${report.id}`}>
       <div className="grid grid-cols-2 gap-4 text-center items-center justify-center my-8 hover:bg-hblue-light/[0.2]" key={`${report.id}`}>
@@ -41,6 +51,9 @@ export default async function PatientDetailPage({ params }: {params:any}) {
                 <p className="text-gray-700">{patient.sex}</p>
             </div>
           </div>
+          <form action={deleteActionWithId}>
+            <button className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1'>Delete this Patient</button>
+          </form>
       </div>
       <h1 className="mt-10 text-4xl font-semibold">Reports</h1>
       <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] mt-2">

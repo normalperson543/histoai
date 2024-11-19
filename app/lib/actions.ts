@@ -17,10 +17,7 @@ const today = new Date().toISOString().slice(0, 10);
 // Code from Vercel
 // Licensed under MIT
 // https://github.com/vercel/next.js/blob/canary/examples/server-actions-upload/app/action.ts
-export async function uploadImage(formData: FormData) {
-    const image = formData.get("file") as File;
-    const patientId = formData.get("patientId");
-    const analysisId = formData.get("analysisId");
+export async function uploadImage(image: File, patientId: string, analysisId: string) {
     
 
     const fileBuffer = await image.arrayBuffer();
@@ -30,7 +27,7 @@ export async function uploadImage(formData: FormData) {
 
     return imagePath;
 }
-export async function addPatient(prevState: any, formData: FormData) {
+export async function addPatient(authId: string, formData: FormData) {
     const dateObject = new Date(formData.get("dateOfBirth") as string);
     const dateToISOString = dateObject.toISOString();
     const createdPatient = await prisma.patient.create({
@@ -40,7 +37,7 @@ export async function addPatient(prevState: any, formData: FormData) {
             lastName: formData.get("lastName") as string,
             dateOfBirth: dateToISOString,
             sex: formData.get("sex") as string,
-            assignedUser: formData.get("assignedUser") as string
+            assignedUser: authId
         }
     })
     return createdPatient;
@@ -54,6 +51,7 @@ export async function deletePatient(patientId: string) {
     return deletedPatient;
 }
 export async function submitReport(formData: FormData) {
+    const image = formData.get("imageFile");
     const createdReport = await prisma.report.create({
         "data": {
             patientId: formData.get("patientId") as string,
@@ -61,9 +59,10 @@ export async function submitReport(formData: FormData) {
             containsOSCC: formData.get("containsOSCC") as unknown as boolean,
             confidenceRate: formData.get("confidenceRate") as unknown as number,
             survey: formData.get("survey") as string,
-            notes: formData.get("notes") as string
+            notes: formData.get("notes") as string,
         }
     });
+    const imagePath = uploadImage(image as File, formData.get("patientId") as string, createdReport.id);
     return createdReport;
 }
 export async function deleteReport( analysisId: string ) {
