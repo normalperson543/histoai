@@ -4,7 +4,30 @@ import { submitReport } from "../lib/actions";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import {CircularProgress} from "@mui/material";
+import * as tf from "@tensorflow/tfjs-node";
 
+export async function predictOSCC(image: File) {
+    const model = await tf.loadLayersModel('/model/model.json');
+    /*const imageDataArrayBuffer = await image.arrayBuffer();
+    const imageData = new Uint8Array(imageDataArrayBuffer);
+    const imageTensor =  tf.node.decodeJpeg(imageData);
+    let resizedTensorFrame = tf.image.resizeBilinear(
+        imageTensor, 
+        [224, 224],
+        true
+    );
+    let normalizedTensorFrame = imageTensor.div(255) as tf.Tensor;
+
+    const prediction = await model.predict(normalizedTensorFrame.expandDims()) as tf.Tensor;
+    console.log("DONE");
+      let highestIndex = prediction.dataSync();
+      let predictionArray = prediction.arraySync();
+
+
+    /*https://codelabs.developers.google.com/tensorflowjs-transfer-learning-teachable-machine#13 */
+    //console.log(highestIndex);
+    return;
+}
 export default function AddReport({patients, authId}: {patients: {
     id: string;
     dateCreated: Date;
@@ -16,7 +39,8 @@ export default function AddReport({patients, authId}: {patients: {
     assignedUser: string;
 }[], authId: string}) {
     async function submitReportWithId(prevState: void|undefined, formData: FormData) {
-        const report = await submitReport(authId, formData);
+        const result = await predictOSCC(formData.get("imageFile") as File);
+        console.log(result);
     }
     const [error, formAction, isPending] = useActionState(submitReportWithId, undefined)
     return (

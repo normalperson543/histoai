@@ -8,7 +8,7 @@ import { signIn, register } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { predictOSCC } from "./model";
+//import { predictOSCC } from "@/app/lib/model";
 const writeFile = promisify(fs.writeFile);
 const { mkdir } = require('node:fs/promises');
 
@@ -51,21 +51,21 @@ export async function deletePatient(patientId: string) {
     })
     return deletedPatient;
 }
-export async function submitReport(userId: string, formData: FormData) {
+export async function submitReport(userId: string, osccDetected: boolean, confidence: number, formData: FormData) {
         const image = formData.get("imageFile");
         const createdReport = await prisma.report.create({
             "data": {
                 patientId: formData.get("patientId") as string,
                 userId: userId,
-                containsOSCC: true,
-                confidenceRate: 0,
+                containsOSCC: osccDetected,
+                confidenceRate: confidence,
                 survey: "",
                 notes: "",
             }
         });
         const imagePath = await uploadImage(image as File, formData.get("patientId") as string, createdReport.id);
-        const prediction = await predictOSCC(image as File);
         console.log("done");
+        return createdReport;
         //redirect(`/dashboard/reports/${createdReport.id}`)
 }
 export async function deleteReport( analysisId: string ) {
