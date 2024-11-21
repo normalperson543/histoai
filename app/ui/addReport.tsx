@@ -4,30 +4,10 @@ import { submitReport } from "../lib/actions";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import {CircularProgress} from "@mui/material";
-import * as tf from "@tensorflow/tfjs-node";
-
-export async function predictOSCC(image: File) {
-    const model = await tf.loadLayersModel('/model/model.json');
-    /*const imageDataArrayBuffer = await image.arrayBuffer();
-    const imageData = new Uint8Array(imageDataArrayBuffer);
-    const imageTensor =  tf.node.decodeJpeg(imageData);
-    let resizedTensorFrame = tf.image.resizeBilinear(
-        imageTensor, 
-        [224, 224],
-        true
-    );
-    let normalizedTensorFrame = imageTensor.div(255) as tf.Tensor;
-
-    const prediction = await model.predict(normalizedTensorFrame.expandDims()) as tf.Tensor;
-    console.log("DONE");
-      let highestIndex = prediction.dataSync();
-      let predictionArray = prediction.arraySync();
-
-
-    /*https://codelabs.developers.google.com/tensorflowjs-transfer-learning-teachable-machine#13 */
-    //console.log(highestIndex);
-    return;
-}
+import predictOSCC from "../lib/model";
+import { uploadImage } from "../lib/actions";
+import { useState } from "react";
+import { useRef } from "react";
 export default function AddReport({patients, authId}: {patients: {
     id: string;
     dateCreated: Date;
@@ -38,11 +18,19 @@ export default function AddReport({patients, authId}: {patients: {
     sex: string;
     assignedUser: string;
 }[], authId: string}) {
-    async function submitReportWithId(prevState: void|undefined, formData: FormData) {
-        const result = await predictOSCC(formData.get("imageFile") as File);
-        console.log(result);
-    }
     const [error, formAction, isPending] = useActionState(submitReportWithId, undefined)
+    const [file, setFile] = useState("")
+    async function submitReportWithId(prevState: void|undefined, formData: FormData) {
+        const result = await predictOSCC(document.getElementById("osccImage") as HTMLImageElement);
+        const osccDetected = result.highestIndex == 1;
+        const confidenceRate = result.confidenceRate;
+        submitReport(authId, osccDetected, confidenceRate, formData);
+    }
+    const inputFile = useRef(null)
+    function handleFileChange(e:any) {
+        setFile(URL.createObjectURL(e.target.files[0]))
+    }
+    
     return (
         <form action={formAction} className="p-6 grid grid-cols-1">
             <label className="grid grid-cols-2 py-5">Patient
@@ -54,10 +42,16 @@ export default function AddReport({patients, authId}: {patients: {
                 </select>
             </label>
             <label className="grid grid-cols-2 py-5">Insert Image
-                <input type="file" name="imageFile" className="mx-auto w-[50%]" required/>
+                <input type="file" name="imageFile" className="mx-auto w-[50%]" onChange={handleFileChange} ref={inputFile} accept=".png,.jpg"/>
             </label>
+            <img src={!!file ? file : undefined} id="osccImage" alt="Uploaded OSCC image" className="mx-auto rounded-sm h-24 w-24"/>
             <input type="submit" className="inline-block w-min py-0.5 px-1 border rounded-lg shadow-lg mx-auto bg-hblue-light/[0.8]"/>
-            {isPending && <CircularProgress />}
+            {isPending && 
+                <div className="text-center">
+                    <CircularProgress />
+                    <b>Uploading and analyzing the image. Please wait.</b>
+                </div>
+            } 
         </form>
     )
 }

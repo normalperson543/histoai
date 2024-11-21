@@ -19,13 +19,11 @@ const today = new Date().toISOString().slice(0, 10);
 // Licensed under MIT
 // https://github.com/vercel/next.js/blob/canary/examples/server-actions-upload/app/action.ts
 export async function uploadImage(image: File, patientId: string, analysisId: string) {
-    
-
     const fileBuffer = await image.arrayBuffer();
-    const imagePath = path.join(`/images/Analysis${analysisId}_Patient${patientId}_${today}${path.extname(image.name)}`);
-    
+    const imagePath = path.join(`/images/${analysisId}${path.extname(image.name)}`);
+    console.log("Processing image")
+    console.log(imagePath);
     await writeFile(imagePath, Buffer.from(fileBuffer)); // If this seems to produce an error, it doesn't
-
     return imagePath;
 }
 export async function addPatient(authId: string, formData: FormData) {
@@ -64,9 +62,7 @@ export async function submitReport(userId: string, osccDetected: boolean, confid
             }
         });
         const imagePath = await uploadImage(image as File, formData.get("patientId") as string, createdReport.id);
-        console.log("done");
-        return createdReport;
-        //redirect(`/dashboard/reports/${createdReport.id}`)
+        redirect(`/dashboard/reports/${createdReport.id}`)
 }
 export async function deleteReport( analysisId: string ) {
     const deletedReport = await prisma.report.delete({
