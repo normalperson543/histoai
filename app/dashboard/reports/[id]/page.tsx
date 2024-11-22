@@ -1,5 +1,10 @@
 import Link from "next/link";
 import { fetchPatient, fetchReport } from "@/app/lib/data";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Report Info"
+};
 export default async function ReportDetailPage({ params }: {params:any}) {
   const { id } = await params;  // Extract the dynamic segment
   const report = await fetchReport(id);

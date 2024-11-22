@@ -1,6 +1,11 @@
 import Link from 'next/link';
 import { auth } from '@/auth';
 import { findAllPatients } from '@/app/lib/data';
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Patients"
+};
 export default async function PatientDataPage() {
   const patients = await findAllPatients();
   return (
