@@ -21,8 +21,6 @@ const today = new Date().toISOString().slice(0, 10);
 export async function uploadImage(image: File, patientId: string, analysisId: string) {
     const fileBuffer = await image.arrayBuffer();
     const imagePath = path.join(`/images/${analysisId}${path.extname(image.name)}`);
-    console.log("Processing image")
-    console.log(imagePath);
     await writeFile(imagePath, Buffer.from(fileBuffer)); // If this seems to produce an error, it doesn't
     return imagePath;
 }

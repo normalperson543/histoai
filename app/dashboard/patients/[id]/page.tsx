@@ -12,7 +12,6 @@ async function deleteAction(patientId: string, formData: FormData) {
 
 export default async function PatientDetailPage({ params }: {params:any}) {
   const { id } = await params;  // Extract the dynamic segment
-  console.log(id);
   const patient = await fetchPatient(id);
   if (!patient) {
     return (<div>Couldn't find a patient with this ID.</div>)
