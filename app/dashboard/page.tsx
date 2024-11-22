@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 export default async function Home() {
   console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    
   const session = await auth();
   const recentReports = await findPatientReportsUnderUser(session?.user?.id as string, 0, 5)
   const recentPatients = await findPatientsUnderUser(session?.user?.id as string, 0, 5);
