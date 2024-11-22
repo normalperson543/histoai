@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-
 import { authenticate } from '@/app/lib/actions';
 import { useActionState } from 'react';
-
+import config from "@/histoai.config";
 import Link from "next/link";
+import { CircularProgress } from "@mui/material";
+
 export default function LoginForm() {
     const [error, formAction, isPending] = useActionState(authenticate, undefined);
     const [rememberMe, setRememberMe] = useState(false);
@@ -17,7 +18,12 @@ export default function LoginForm() {
                     src="./logo.svg"
                     alt="HistoAI image"
                     />
-                    <h1 className="text-4xl text-center">Histo<span className="font-semibold">AI</span></h1>
+                    <h1 className="text-4xl text-center">
+                            histo<span className="font-semibold">AI</span>
+                    </h1>
+                    <div className="text-xl text-center font-semibold">
+                        {config.orgName}
+                    </div>
                 </div>
                 <div className="md:w-1/3 max-w-sm">
                     <label>
@@ -45,15 +51,20 @@ export default function LoginForm() {
                     </label>
                     </div>
                     <div className="text-center md:text-left">
-                    <button
-                        className="mt-4 bg-blue-600 hover:bg-blue-700 px-2 py-1 text-white uppercase rounded text-xs tracking-wider border bg-hblue-light/[0.4]"
-                        type="submit"
-                    >
-                        Login
-                    </button>
+                    {
+                            !isPending ?
+                                <button
+                                    className="mt-4 bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded text-xs tracking-wider border bg-hblue-light/[0.4]"
+                                    type="submit"
+                                >
+                                    Login
+                                </button>
+                            :
+                                <div className="my-1"><CircularProgress size="30px"/></div>
+                        }
                     </div>
                     <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
-                    Don&apos;t have an account?{" "}
+                    Don't have an account? 
                     <Link href={'/register'}><span className="text-red-600 hover:underline hover:underline-offset-4">Register</span></Link>
                     </div>
                     {

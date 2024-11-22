@@ -20,7 +20,7 @@ export default async function PatientDetailPage({ params }: {params:any}) {
   const patientReports = await findPatientReportsUnderPatient(id);
   const deleteActionWithId = deleteAction.bind(null, id);
   const reportRows = patientReports.map(report => 
-    <Link href={`/reports/${report.id}`}>
+    <Link href={`/dashboard/reports/${report.id}`}>
       <div className="grid grid-cols-2 gap-4 text-center items-center justify-center my-8 hover:bg-hblue-light/[0.2]" key={`${report.id}`}>
         <p>{report.id}</p>
         <p className="">{report.dateGenerated.toLocaleDateString('en-US', { year: "numeric", month: "long", day: "numeric" })}</p>

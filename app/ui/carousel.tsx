@@ -73,12 +73,12 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
                 })}
             </div>
 
-            <div className='absolute top-0 left-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue'>
+            <div className='absolute top-0 left-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue-light'>
                 <button onClick={previousSlide}>
                     <BsArrowLeftCircleFill/>
                 </button>
             </div>
-            <div className='absolute top-0 right-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue'>
+            <div className='absolute top-0 right-0 h-full w-[20%]items-center flex px-10 text-3xl text-hblue-light'>
                 <button onClick={nextSlide}>
                     <BsArrowRightCircleFill/>
                 </button>

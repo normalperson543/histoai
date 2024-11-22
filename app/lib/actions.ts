@@ -105,3 +105,12 @@ export async function createAccount(prevState: string | undefined, formData: For
         }
     }
 }
+export async function completeSetup(prevState: void|undefined, formData: FormData) {
+    await createAccount(undefined, formData);
+    await setSetupStatus();
+    redirect("/login");
+}
+export async function setSetupStatus() {
+    await writeFile("setup.ts", "const isSetup = true; export default isSetup;"); 
+    return true;
+}

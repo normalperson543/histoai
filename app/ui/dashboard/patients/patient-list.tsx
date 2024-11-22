@@ -21,7 +21,7 @@ export default function PatientList(patients: {
         {patients.map(obj => {
           return(
             <li key={obj.id} className='px-3 py-1 hover:bg-hblue/[0.1]'>
-              <Link href={`/patients/${obj.id}`}>
+              <Link href={`/dashboard/patients/${obj.id}`}>
                 <div className='flex col-2'>
                   <p className='text-left w-[50%]'>{obj.firstName} {obj.middleName && `${obj.middleName.substring(0,1)}.`} {obj.lastName}</p>
                   <p className='text-right w-[50%]'>{obj.dateCreated.toLocaleDateString()}</p>

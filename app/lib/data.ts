@@ -72,3 +72,11 @@ export async function findAllPatients() {
     });
     return patients;
 }
+export async function findAllReports() {
+    const reports = prisma.report.findMany({
+        orderBy: {
+            dateGenerated: 'desc'
+        },
+    });
+    return reports;
+}

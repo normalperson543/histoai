@@ -6,7 +6,10 @@ import Header from './ui/header';
 const redHatText = Red_Hat_Text({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'histoAI',
+  title: {
+    template: "%s | histoAI",
+    default: "histoAI"
+  },
   description: 'The revolution in cancer detection. Making AI and OSCC detection available to everyone.',
 };
 
