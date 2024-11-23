@@ -8,8 +8,8 @@
     "next-build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "setup-auth": "auth secret",
-    "setup-db": "prisma generate"
+    "setup-auth": "npx auth secret",
+    "setup-db": "npx prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.2",
