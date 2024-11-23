@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm-run-all build setup-auth setup-db",
+    "build": "npm-run-all next-build setup-auth setup-db",
+    "next-build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "setup-auth": "npx auth secret",
-    "setup-db": "npx prisma generate"
+    "setup-auth": "auth secret",
+    "setup-db": "prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.2",
