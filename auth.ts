@@ -107,8 +107,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token
     },
     session({ session, token }) {
-      session.user.id = token.id
-      return session
+      session.user.id = token.id as string;
+      return session;
     },
   }
 })
