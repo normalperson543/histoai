@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm-run-all 'next build' 'npx auth secret' 'npx prisma generate'",
+    "build": "npm-run-all build setup-auth setup-db",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "setup-auth": "npx auth secret",
+    "setup-db": "npx prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.2",
