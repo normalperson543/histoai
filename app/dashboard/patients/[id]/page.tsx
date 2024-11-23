@@ -18,7 +18,7 @@ export default async function PatientDetailPage({ params }: {params:any}) {
   const { id } = await params;  // Extract the dynamic segment
   const patient = await fetchPatient(id);
   if (!patient) {
-    return (<div>Couldn't find a patient with this ID.</div>)
+    return (<div>Couldn&apos;t find a patient with this ID.</div>)
   }
   const patientReports = await findPatientReportsUnderPatient(id);
   const deleteActionWithId = deleteAction.bind(null, id);

@@ -13,7 +13,7 @@ export default async function ReportPage() {
   const reports = await findAllReports();
   const reportItems = reports.map(async obj => {
     const patient = await fetchPatient(obj.patientId);
-    return (<ReportItem report={obj} patient={patient}/>)
+    return (<ReportItem report={obj} patient={patient} key={obj.id}/>)
   })
   return (
     <Suspense fallback={<CircularProgress />}>

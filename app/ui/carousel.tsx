@@ -3,22 +3,7 @@ import { BsArrowRightCircleFill } from "react-icons/bs";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
 import Link from "next/link";
 import { useState } from 'react';
-
-// export type Images = {
-//   id: number,
-//   url: string
-// };
-
-// export type Patient = {
-//   name: string,
-//   dob: Date,
-//   sex: string
-// };
-
-// export type PatientRecord = {
-//   id: number,
-//   info: Patient
-// }
+import Image from "next/image";
 
 export default function Carousel({slides, carouselType} : {slides: any, carouselType: string}) {
 
@@ -49,7 +34,7 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
                     if(carouselType === "images") {
                         return (
                             <div key={s.id} className="min-w-full min-h-full m-auto">
-                                <Link href={`/dashboard/reports/${s.id}`}><img className="transition ease-in object-fill m-auto hover:scale-75" src = {s.imageUrl}/></Link>
+                                <Link href={`/dashboard/reports/${s.id}`}><Image className="transition ease-in object-fill m-auto hover:scale-75" src={s.imageUrl} height={100} width={100} alt={`Uploaded histopathological image`}/></Link>
                             </div>
                         )
                     } else if (carouselType === "patients") {

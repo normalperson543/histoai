@@ -3,6 +3,8 @@ import { fetchPatient, fetchReport } from "@/app/lib/data";
 import { Metadata } from "next";
 import { deleteReport } from "@/app/lib/actions";
 import { redirect } from "next/navigation";
+import Image from "next/image";
+
 export const metadata: Metadata = {
   title: "Report Info"
 };
@@ -16,7 +18,7 @@ export default async function ReportDetailPage({ params }: {params:any}) {
   const { id } = await params;  // Extract the dynamic segment
   const report = await fetchReport(id);
   if (!report) {
-    return (<p>Couldn't find a report with this ID.</p>);
+    return (<p>Couldn&apos;t find a report with this ID.</p>);
   }
   const deleteActionWithId = deleteAction.bind(null, id);
   const patient = await fetchPatient(report.patientId);
@@ -49,7 +51,7 @@ export default async function ReportDetailPage({ params }: {params:any}) {
           </div>
           <div className="flex items-center justify-center flex-col my-5">
               <h1 className="font-semibold">Image</h1>
-              <img src={`/api/get_image/${report.id}`} className="m-auto max-w-[50%] w-1/2 aspect-square rounded-md object-cover object-center"></img>
+              <Image src={`/api/get_image/${report.id}`} className="m-auto max-w-[50%] aspect-square rounded-md object-cover object-center" height={100} width={100} alt="Uploaded histopathological image"></Image>
           </div>
           { report.notes != "" &&
             <div className="text-center">
