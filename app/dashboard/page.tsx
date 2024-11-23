@@ -7,9 +7,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Dashboard"
 };
-export default async function Home() {
-  console.log('Fetching revenue data...');
-    
+export default async function Home() { 
   const session = await auth();
   const recentReports = await findPatientReportsUnderUser(session?.user?.id as string, 0, 5)
   const recentPatients = await findPatientsUnderUser(session?.user?.id as string, 0, 5);

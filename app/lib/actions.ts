@@ -15,9 +15,9 @@ const today = new Date().toISOString().slice(0, 10);
 // Code from Vercel
 // Licensed under MIT
 // https://github.com/vercel/next.js/blob/canary/examples/server-actions-upload/app/action.ts
-export async function uploadImage(image: File, patientId: string, analysisId: string) {
+export async function uploadImage(image: File, analysisId: string) {
     const fileBuffer = await image.arrayBuffer();
-    const imagePath = path.join(`/images/${analysisId}${path.extname(image.name)}`);
+    const imagePath = path.join(`./images/${analysisId}${path.extname(image.name)}`);
     await writeFile(imagePath, Buffer.from(fileBuffer)); // If this seems to produce an error, it doesn't
     return imagePath;
 }
@@ -45,21 +45,21 @@ export async function deletePatient(patientId: string) {
     return deletedPatient;
 }
 export async function submitReport(userId: string, osccDetected: boolean, confidence: number, formData: FormData) {
-        const image = formData.get("imageFile");
-        const createdReport = await prisma.report.create({
-            "data": {
-                patientId: formData.get("patientId") as string,
-                userId: userId,
-                containsOSCC: osccDetected,
-                confidenceRate: confidence,
-                survey: "",
-                notes: "",
-            }
-        });
-        const imagePath = await uploadImage(image as File, formData.get("patientId") as string, createdReport.id);
-        redirect(`/dashboard/reports/${createdReport.id}`)
+    const image = formData.get("imageFile");
+    const createdReport = await prisma.report.create({
+        "data": {
+            patientId: formData.get("patientId") as string,
+            userId: userId,
+            containsOSCC: osccDetected,
+            confidenceRate: confidence,
+            survey: "",
+            notes: "",
+        }
+    });
+    const imagePath = await uploadImage(image as File, createdReport.id);
+    redirect(`/dashboard/reports/${createdReport.id}`)
 }
-export async function deleteReport( analysisId: string ) {
+export async function deleteReport(analysisId: string) {
     const deletedReport = await prisma.report.delete({
         "where": {
             id: analysisId
@@ -82,9 +82,9 @@ export async function authenticate(prevState: string | undefined, formData: Form
         if (error instanceof AuthError) {
             switch (error.type) {
                 case 'CredentialsSignin':
-                return 'The username or password you entered was incorrect. Please try again.';
+                    return 'The username or password you entered was incorrect. Please try again.';
                 default:
-                return 'Something went wrong. Please try again later.';
+                    return 'Something went wrong. Please try again later.';
             }
         }
     }
@@ -96,7 +96,7 @@ export async function createAccount(prevState: string | undefined, formData: For
         redirect('/login');
     } catch (error) {
         if (error instanceof Error) {
-            return error.message;
+            return "Something went wrong creating your account."
         }
     }
 }

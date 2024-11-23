@@ -1,4 +1,4 @@
-import AddPatientForm from "@/app/ui/addPatient";
+import AddPatientForm from "@/app/ui/dashboard/patients/add-patient";
 import { auth } from "@/auth";
 import { Metadata } from "next";
 

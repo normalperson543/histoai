@@ -7,11 +7,19 @@ import prisma from "@/app/lib/db";
 
 const readFile = promisify(fs.readFile);
 
-async function read(analysisId: string) {
+async function read(reportId: string) {
+    const report = await prisma.report.findUnique({
+        "where": {
+            id: reportId
+        }
+    })
+    if (!report) {
+        return Response.json({"response": "Failed to fetch image"}, {"status": 404});
+    }
     try {
         let myFile;
         
-        await readFile(path.join(`/images/${analysisId.toString()}.png`))
+        await readFile(path.join(`./images/${reportId.toString()}.png`))
         .then(
             (file) =>
             {
@@ -25,7 +33,7 @@ async function read(analysisId: string) {
         try {
             let myFile;
 
-            await readFile(path.join(`/images/${analysisId.toString()}.jpg`))
+            await readFile(path.join(`./images/${reportId.toString()}.jpg`))
             .then(
                 (file) =>
                 {

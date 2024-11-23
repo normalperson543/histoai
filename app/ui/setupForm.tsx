@@ -28,7 +28,7 @@ export default function SetupForm() {
                         <div className="text-xl font-semibold">
                             🎉 Congratulations, you successfully deployed histoAI!
                         </div>
-                        <div><p>Here is the configuration info. Check if this is correct.</p></div>
+                        <div><p>Here is the configuration info. Check if this is correct. If it isn't, modify the <code>histoai.config.ts</code> file.</p></div>
                         <ul className="list-disc list-inside">
                             <li>Full organization name: {orgName}</li>
                             <li>Short organization name: {shortOrgName}</li>
