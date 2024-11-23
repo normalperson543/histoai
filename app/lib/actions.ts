@@ -96,12 +96,18 @@ export async function createAccount(prevState: string | undefined, formData: For
         redirect('/login');
     } catch (error) {
         if (error instanceof Error) {
-            return "Something went wrong creating your account."
+            return error.message;
         }
     }
 }
 export async function completeSetup(prevState: string|undefined, formData: FormData) {
-    await createAccount(undefined, formData);
+    try {
+        await createAccount(undefined, formData);
+    } catch (error) {
+        if (error instanceof Error) {
+            return error.message;
+        }
+    }
     try {
         await initImagesDirectory();
     } catch {

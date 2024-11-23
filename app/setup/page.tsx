@@ -1,4 +1,4 @@
-import SetupForm from "../ui/setupForm";
+import SetupForm from "../ui/setup-form";
 import { redirect } from "next/navigation";
 import { checkSetup } from "@/internal-config";
 import { Metadata } from "next";

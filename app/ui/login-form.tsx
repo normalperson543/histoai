@@ -16,7 +16,7 @@ export default function LoginForm() {
             <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
                 <div className="md:w-1/3 max-w-sm">
                     <img
-                    src="./logo.svg"
+                    src="/logo.svg"
                     alt="HistoAI image"
                     />
                     <h1 className="text-4xl text-center">
@@ -70,11 +70,11 @@ export default function LoginForm() {
                     </div>
                     {
                         error && (
-                                <div className="bg-red-300 p-3">
-                                    {error}
-                                </div>
-                            )
-                        }
+                            <div className="bg-red-300 p-3">
+                                {error}
+                            </div>
+                        )
+                    }
                 </div>
             </section> 
         </form>

@@ -79,16 +79,16 @@ export default function RegisterForm() {
                         Already have an account? 
                         <Link href={'/login'}><span className="text-red-600 hover:underline hover:underline-offset-4"> Login</span></Link>
                         </div>
+                        {
+                            error && (
+                                <div className="bg-red-300 p-3">
+                                    {error}
+                                </div>
+                            )
+                        }
                     </div>
                 </section> 
             </form>
-            {
-                error && (
-                    <div className="bg-red-300 p-3">
-                        {error}
-                    </div>
-                )
-            }
         </>
     )
 }
