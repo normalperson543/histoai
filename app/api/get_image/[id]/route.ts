@@ -10,6 +10,7 @@ const readFile = promisify(fs.readFile);
 async function read(analysisId: string) {
     try {
         let myFile;
+        
         await readFile(path.join(`/images/${analysisId.toString()}.png`))
         .then(
             (file) =>
@@ -21,7 +22,22 @@ async function read(analysisId: string) {
             myFile
         )
     } catch {
-        return Response.json({"response": "Failed to fetch image"}, {"status": 404})
+        try {
+            let myFile;
+
+            await readFile(path.join(`/images/${analysisId.toString()}.jpg`))
+            .then(
+                (file) =>
+                {
+                    myFile = file;
+                } 
+            )
+            return new Response(
+                myFile
+            )
+        } catch {
+            return Response.json({"response": "Failed to fetch image"}, {"status": 404});
+        }
     }
 }
 export async function GET( request: Request,
