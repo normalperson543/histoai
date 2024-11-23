@@ -1,5 +1,5 @@
 import { findAllPatients } from "@/app/lib/data";
-import AddReport from "@/app/ui/addReport";
+import AddReport from "@/app/ui/dashboard/reports/add-report";
 import { auth } from "@/auth";
 import { Metadata } from "next";
 

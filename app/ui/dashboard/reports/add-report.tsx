@@ -1,11 +1,11 @@
 'use client';
 import { useActionState } from "react";
-import { submitReport } from "../lib/actions";
+import { submitReport } from "../../../lib/actions";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import {CircularProgress} from "@mui/material";
-import predictOSCC from "../lib/model";
-import { uploadImage } from "../lib/actions";
+import predictOSCC from "../../../lib/model";
+import { uploadImage } from "../../../lib/actions";
 import { useState } from "react";
 import { useRef } from "react";
 export default function AddReport({patients, authId}: {patients: {

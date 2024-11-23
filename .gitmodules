@@ -1,0 +1,3 @@
+[submodule "public/model"]
+	path = public/model
+	url = https://github.com/normalperson543/histoai-tfjs-model.git

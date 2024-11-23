@@ -1,4 +1,4 @@
-import RegisterForm from "../ui/registerForm"
+import RegisterForm from "../ui/register-form"
 import { checkSetup } from "@/internal-config";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";

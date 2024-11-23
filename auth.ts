@@ -46,12 +46,12 @@ export async function register(formData: FormData) {
   const firstName = formData.get("firstName") as string;
   const lastName = formData.get("lastName") as string;
   const hashedPassword = await saltAndHashPassword(password);
-  const checkForUser = await prisma.user.findFirst({
+  const checkForUser = await prisma.user.count({
     "where": {
         username: username
     }
   })
-  if (checkForUser) {
+  if (checkForUser != 0) {
     throw new Error("This user already exists. Please log in.")
   }
   try {

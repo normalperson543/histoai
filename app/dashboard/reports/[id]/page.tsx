@@ -1,16 +1,24 @@
 import Link from "next/link";
 import { fetchPatient, fetchReport } from "@/app/lib/data";
 import { Metadata } from "next";
-
+import { deleteReport } from "@/app/lib/actions";
+import { redirect } from "next/navigation";
 export const metadata: Metadata = {
   title: "Report Info"
 };
+async function deleteAction(patientId: string, formData: FormData) {
+  'use server';
+  deleteReport(patientId);
+  redirect("/dashboard/reports");
+}
+
 export default async function ReportDetailPage({ params }: {params:any}) {
   const { id } = await params;  // Extract the dynamic segment
   const report = await fetchReport(id);
   if (!report) {
     return (<p>Couldn't find a report with this ID.</p>);
   }
+  const deleteActionWithId = deleteAction.bind(null, id);
   const patient = await fetchPatient(report.patientId);
   return (
     <main className="flex flex-col items-center pt-10">
@@ -34,7 +42,7 @@ export default async function ReportDetailPage({ params }: {params:any}) {
                   <div className="p-1 bg-green-300 rounded-full">No OSCC Detected</div>
                   }
             </div>
-            <div className="">
+            <div>
                 <h2 className="font-semibold">Confidence Rate</h2>
                 <p className="text-gray-700">{Math.floor(report.confidenceRate * 10000) / 100}%</p>
             </div>
@@ -50,7 +58,9 @@ export default async function ReportDetailPage({ params }: {params:any}) {
             </div>
           }
           <div className="flex items-center justify-center flex-row my-5">
-              
+            <form action={deleteActionWithId}>
+              <button className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1'>Delete this Report</button>
+            </form>
           </div>
       </div>
       <h1 className="text-center text-3xl font-bold mt-5">Patient</h1>
