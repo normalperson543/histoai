@@ -1,14 +1,14 @@
 import LoginForm from "../ui/loginForm"
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
-import config from "@/histoai.config";
 import { Metadata } from "next";
+import { checkSetup } from "@/internal-config";
 
 export const metadata: Metadata = {
   title: "Login"
 };
 export default async function SignIn() {
-  const isSetup = config.isSetup;
+  const isSetup = await checkSetup();
   if (!isSetup) {
     redirect('/setup');
   }

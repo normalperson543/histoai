@@ -7,11 +7,8 @@ import prisma from "./db";
 import { signIn, register } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
-//import { predictOSCC } from "@/app/lib/model";
 const writeFile = promisify(fs.writeFile);
-const { mkdir } = require('node:fs/promises');
-
+const mkdir = promisify(fs.mkdir);
 
 // https://stackoverflow.com/a/35922073
 const today = new Date().toISOString().slice(0, 10);
@@ -91,7 +88,7 @@ export async function authenticate(prevState: string | undefined, formData: Form
             }
         }
     }
-    redirect('/');
+    redirect('/dashboard');
 }
 export async function createAccount(prevState: string | undefined, formData: FormData) {
     try {
@@ -103,12 +100,21 @@ export async function createAccount(prevState: string | undefined, formData: For
         }
     }
 }
-export async function completeSetup(prevState: void|undefined, formData: FormData) {
+export async function completeSetup(prevState: string|undefined, formData: FormData) {
     await createAccount(undefined, formData);
-    await setSetupStatus();
+    try {
+        await initImagesDirectory();
+    } catch {
+        return "Something went wrong creating the images directory.";
+    }
+    try {
+        await setSetupStatus();
+    } catch {
+        return "Something went wrong completing setup.";
+    }
     redirect("/login");
 }
 export async function setSetupStatus() {
-    await writeFile("setup.ts", "const isSetup = true; export default isSetup;"); 
+    await writeFile(".setup", ""); 
     return true;
 }

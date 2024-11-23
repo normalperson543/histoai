@@ -3,12 +3,15 @@ import Link from "next/link";
 import SmProfilePicture from "./profile-picture";
 import { auth, signOut } from "@/auth";
 import { fetchUser } from "@/app/lib/data";
+import { checkSetup } from "@/internal-config";
 import config from "@/histoai.config";
-import { useActionState } from "react";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function Header() {
     const session = await auth();
-    const isSetup = config.isSetup;
+    const isSetup = await checkSetup();
+    const shortOrgName = config.shortOrgName;
     let fullName;
     if (session) {
         const user = await fetchUser(session?.user?.id as string);
@@ -28,7 +31,7 @@ export default async function Header() {
                     </Link>
                     <Link href="/">
                         <strong className="flex items-center h-full px-3 py-1 shrink">
-                            {config.shortOrgName}
+                            {shortOrgName}
                         </strong>
                     </Link>
                 </div>
@@ -80,10 +83,12 @@ export default async function Header() {
                         {
                             session && (
                             <form
-                            action={async () => {
-                                "use server"
-                                await signOut()
-                            }}
+                                action={async () => {
+                                    'use server';
+                                    await signOut();
+                                    revalidatePath("/", "layout");
+                                    redirect("/login");
+                                }}
                             >
                                 <button className="flex gap-2 items-center h-full px-3 py-1 shrink" type="submit">Sign out</button>
                             </form>

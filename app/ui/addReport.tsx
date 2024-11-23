@@ -44,7 +44,9 @@ export default function AddReport({patients, authId}: {patients: {
             <label className="grid grid-cols-2 py-5">Insert Image
                 <input type="file" name="imageFile" className="mx-auto w-[50%]" onChange={handleFileChange} ref={inputFile} accept=".png,.jpg"/>
             </label>
-            <img src={!!file ? file : undefined} id="osccImage" alt="Uploaded OSCC image" className="mx-auto rounded-sm h-24 w-24"/>
+            { !!file &&
+                <img src={!!file ? file : undefined} id="osccImage" alt="Uploaded OSCC image" className="mx-auto rounded-sm h-24 w-24"/>
+            }
             <input type="submit" className="inline-block w-min py-0.5 px-1 border rounded-lg shadow-lg mx-auto bg-hblue-light/[0.8]"/>
             {isPending && 
                 <div className="text-center">

@@ -8,6 +8,7 @@ import { CircularProgress } from "@mui/material";
 
 export default function RegisterForm() {
     const [error, formAction, isPending] = useActionState(createAccount, undefined);
+    const orgName = config.orgName;
     return (
         <>
             <form action={formAction}>
@@ -21,7 +22,7 @@ export default function RegisterForm() {
                             histo<span className="font-semibold">AI</span>
                         </h1>
                         <div className="text-xl text-center font-semibold">
-                            {config.orgName}
+                            {orgName}
                         </div>
                     </div>
                     <div className="md:w-1/3 max-w-sm">

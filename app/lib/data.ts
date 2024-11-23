@@ -1,4 +1,6 @@
+'use server';
 import prisma from "./db";
+import { promisify } from "util";
 
 export async function fetchUser(userId: string) {
     const user = await prisma.user.findUnique({
@@ -65,7 +67,7 @@ export async function findPatientsUnderUser(userId: string, skip: number, take: 
     return patients;
 }
 export async function findAllPatients() {
-    const patients = prisma.patient.findMany({
+    const patients = await prisma.patient.findMany({
         orderBy: {
             dateCreated: 'desc'
         },
@@ -73,7 +75,7 @@ export async function findAllPatients() {
     return patients;
 }
 export async function findAllReports() {
-    const reports = prisma.report.findMany({
+    const reports = await prisma.report.findMany({
         orderBy: {
             dateGenerated: 'desc'
         },

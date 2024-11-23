@@ -1,13 +1,13 @@
 import SetupForm from "../ui/setupForm";
 import { redirect } from "next/navigation";
-import config from "@/histoai.config";
+import { checkSetup } from "@/internal-config";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Setup"
 };
 export default async function SetupPage() {
-    const isSetup = config.isSetup;
+  const isSetup = await checkSetup();
     if (isSetup) {
         redirect("/")
     }

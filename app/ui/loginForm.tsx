@@ -10,6 +10,7 @@ export default function LoginForm() {
     const [error, formAction, isPending] = useActionState(authenticate, undefined);
     const [rememberMe, setRememberMe] = useState(false);
 
+    const orgName = config.orgName;
     return (
         <form action={formAction}>
             <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
@@ -22,7 +23,7 @@ export default function LoginForm() {
                             histo<span className="font-semibold">AI</span>
                     </h1>
                     <div className="text-xl text-center font-semibold">
-                        {config.orgName}
+                        {orgName}
                     </div>
                 </div>
                 <div className="md:w-1/3 max-w-sm">

@@ -4,13 +4,15 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { useActionState } from "react";
 async function handleSubmit(authId: string, formData: FormData) {
+    let patientId;
     try {
-        const createdPatient = addPatient(authId, formData);
-        const patientId = (await createdPatient).id;
-        redirect(`/dashboard/patients/${patientId}`);
+        const createdPatient = await addPatient(authId, formData);
+        patientId = (await createdPatient).id;
+        console.log(patientId);
     } catch(error) {
         alert(`Something went wrong. Please try again later.`);
     }
+    redirect(`/dashboard/patients/${patientId}`);
 }
 export default function AddPatientForm({authId}: {authId: string}){
     const handleSubmitWithId = handleSubmit.bind(null, authId)
@@ -22,7 +24,7 @@ export default function AddPatientForm({authId}: {authId: string}){
                     <input type="text" name="firstName" className="mx-auto border rounded-lg shadow-lg w-[50%]" required placeholder="first name"/>
                 </label>
                 <label className="grid grid-cols-2 py-5">Middle Name
-                    <input type="text" name="middleName" className="mx-auto border rounded-lg shadow-lg w-[50%]" required placeholder="middle name"/>
+                    <input type="text" name="middleName" className="mx-auto border rounded-lg shadow-lg w-[50%]" placeholder="middle name"/>
                 </label>
                 <label className="grid grid-cols-2 py-5">Last Name
                     <input type="text" name="lastName" className="mx-auto border rounded-lg shadow-lg w-[50%]" required placeholder="last name"/>
@@ -35,6 +37,7 @@ export default function AddPatientForm({authId}: {authId: string}){
 
                         <option value={"male"} key={"male"}>Male</option>
                         <option value={"female"} key={"female"}>Female</option>
+                        <option value={"not given"} key={"not given"}>Not given</option>
                     </select>
                 </label>
                 <input type="text" name="assignedUser"/>

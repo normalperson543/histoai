@@ -7,7 +7,9 @@ import config from "@/histoai.config";
 
 export default function SetupForm() {
     const [error, formAction, isPending] = useActionState(completeSetup, undefined);
-
+    
+    const orgName = config.orgName;
+    const shortOrgName = config.shortOrgName;
     return (
         <>
             <form action={formAction}>
@@ -26,10 +28,10 @@ export default function SetupForm() {
                         <div className="text-xl font-semibold">
                             🎉 Congratulations, you successfully deployed histoAI!
                         </div>
-                        <div><p>Here is the configuration info. Check if this is correct. If not, modify the <code>histoai.config.ts</code> file.</p></div>
+                        <div><p>Here is the configuration info. Check if this is correct.</p></div>
                         <ul className="list-disc list-inside">
-                            <li>Full organization name: {config.orgName}</li>
-                            <li>Short organization name: {config.shortOrgName}</li>
+                            <li>Full organization name: {orgName}</li>
+                            <li>Short organization name: {shortOrgName}</li>
                         </ul>
                         <div><p>Create the admin account below.</p></div>
                         <input
