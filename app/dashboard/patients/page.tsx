@@ -19,7 +19,16 @@ export default async function PatientDataPage() {
           </div>
         </li>  
           
-        {patients.map(obj => {
+        {patients.map((obj: {
+            id: string;
+            dateCreated: Date;
+            firstName: string;
+            middleName: string | null;
+            lastName: string;
+            dateOfBirth: Date;
+            sex: string;
+            assignedUser: string;
+        }) => {
           return(
             <li key={obj.id} className='px-3 py-1 hover:bg-hblue/[0.1]'>
               <Link href={`/dashboard/patients/${obj.id}`}>

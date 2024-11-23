@@ -11,7 +11,16 @@ export const metadata: Metadata = {
 };
 export default async function ReportPage() {
   const reports = await findAllReports();
-  const reportItems = reports.map(async obj => {
+  const reportItems = reports.map(async (obj: {
+      id: string;
+      dateGenerated: Date;
+      patientId: string;
+      userId: string;
+      containsOSCC: boolean;
+      confidenceRate: number;
+      survey: string;
+      notes: string;
+  }) => {
     const patient = await fetchPatient(obj.patientId);
     return (<ReportItem report={obj} patient={patient} key={obj.id}/>)
   })

@@ -18,7 +18,16 @@ export default function PatientList(patients: {
           </div>
         </li>  
           
-        {patients.map(obj => {
+        {patients.map((obj: {
+          id: string;
+          firstName: string;
+          middleName: string | null;
+          lastName: string;
+          dateCreated: Date;
+          dateOfBirth: Date;
+          sex: string;
+          assignedUser: string;
+        }) => {
           return(
             <li key={obj.id} className='px-3 py-1 hover:bg-hblue/[0.1]'>
               <Link href={`/dashboard/patients/${obj.id}`}>

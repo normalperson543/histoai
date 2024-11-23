@@ -22,7 +22,16 @@ export default async function PatientDetailPage({ params }: {params:any}) {
   }
   const patientReports = await findPatientReportsUnderPatient(id);
   const deleteActionWithId = deleteAction.bind(null, id);
-  const reportRows = patientReports.map(report => 
+  const reportRows = patientReports.map((report: {
+      id: string;
+      dateGenerated: Date;
+      patientId: string;
+      userId: string;
+      containsOSCC: boolean;
+      confidenceRate: number;
+      survey: string;
+      notes: string;
+  })  => 
     <Link href={`/dashboard/reports/${report.id}`} key={report.id}>
       <div className="grid grid-cols-2 gap-4 text-center items-center justify-center my-8 hover:bg-hblue-light/[0.2]" key={`${report.id}`}>
         <p>{report.id}</p>
