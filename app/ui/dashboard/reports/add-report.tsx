@@ -1,13 +1,12 @@
 'use client';
 import { useActionState } from "react";
 import { submitReport } from "../../../lib/actions";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 import {CircularProgress} from "@mui/material";
 import predictOSCC from "../../../lib/model";
-import { uploadImage } from "../../../lib/actions";
 import { useState } from "react";
 import { useRef } from "react";
+import Image from "next/image";
+
 export default function AddReport({patients, authId}: {patients: {
     id: string;
     dateCreated: Date;
@@ -45,7 +44,7 @@ export default function AddReport({patients, authId}: {patients: {
                 <input type="file" name="imageFile" className="mx-auto w-[50%]" onChange={handleFileChange} ref={inputFile} accept=".png,.jpg"/>
             </label>
             { !!file &&
-                <img src={!!file ? file : undefined} id="osccImage" alt="Uploaded OSCC image" className="mx-auto rounded-sm h-24 w-24"/>
+                <Image src={file} id="osccImage" alt="Uploaded OSCC image" className="mx-auto rounded-sm h-24 w-24" height={100} width={100}/>
             }
             <input type="submit" className="inline-block w-min py-0.5 px-1 border rounded-lg shadow-lg mx-auto bg-hblue-light/[0.8]"/>
             {isPending && 

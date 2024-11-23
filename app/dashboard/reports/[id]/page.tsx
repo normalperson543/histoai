@@ -51,7 +51,7 @@ export default async function ReportDetailPage({ params }: {params:any}) {
           </div>
           <div className="flex items-center justify-center flex-col my-5">
               <h1 className="font-semibold">Image</h1>
-              <Image src={`/api/get_image/${report.id}`} className="m-auto max-w-[50%] aspect-square rounded-md object-cover object-center" height={100} width={100} alt="Uploaded histopathological image"></Image>
+              <Image src={`/api/get_image/${report.id}`} className="m-auto max-w-[50%] aspect-square rounded-md object-cover object-center" height={200} width={200} alt="Uploaded histopathological image"></Image>
           </div>
           { report.notes != "" &&
             <div className="text-center">

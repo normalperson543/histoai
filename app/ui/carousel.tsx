@@ -30,11 +30,11 @@ export default function Carousel({slides, carouselType} : {slides: any, carousel
     return (
         <div className="overflow-hidden relative h-full m-auto">
             <div className={`flex transition duration-700 h-full`} style={{transform: `translateX(-${current * 100}%)`}}>
-                {slides.map((s:any) => {
+                {slides.map((s: any) => {
                     if(carouselType === "images") {
                         return (
                             <div key={s.id} className="min-w-full min-h-full m-auto">
-                                <Link href={`/dashboard/reports/${s.id}`}><Image className="transition ease-in object-fill m-auto hover:scale-75" src={s.imageUrl} height={100} width={100} alt={`Uploaded histopathological image`}/></Link>
+                                <Link href={`/dashboard/reports/${s.id}`}>{/* FIX ==> <Image className="transition ease-in object-fill m-auto hover:scale-75" src={s.imageUrl} height={100} width={100} alt={`Uploaded histopathological image`}/>*/}</Link>
                             </div>
                         )
                     } else if (carouselType === "patients") {

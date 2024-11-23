@@ -5,6 +5,7 @@ import { useActionState } from "react";
 import Link from "next/link";
 import config from "@/histoai.config";
 import { CircularProgress } from "@mui/material";
+import Image from "next/image";
 
 export default function RegisterForm() {
     const [error, formAction, isPending] = useActionState(createAccount, undefined);
@@ -14,9 +15,11 @@ export default function RegisterForm() {
             <form action={formAction}>
                 <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
                     <div className="md:w-1/3 max-w-sm">
-                        <img
-                            src="./logo.svg"
+                        <Image
+                            src="/logo.svg"
                             alt="HistoAI logo"
+                            height={200}
+                            width={200}
                         />
                         <h1 className="text-4xl text-center">
                             histo<span className="font-semibold">AI</span>

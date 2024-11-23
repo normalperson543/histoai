@@ -4,6 +4,7 @@ import { completeSetup } from "../lib/actions";
 import { useActionState } from "react";
 import { CircularProgress } from "@mui/material";
 import config from "@/histoai.config";
+import Image from "next/image";
 
 export default function SetupForm() {
     const [error, formAction, isPending] = useActionState(completeSetup, undefined);
@@ -15,9 +16,11 @@ export default function SetupForm() {
             <form action={formAction}>
                 <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
                     <div className="md:w-1/3 max-w-sm">
-                        <img
-                            src="./logo.svg"
+                        <Image
+                            src="/logo.svg"
                             alt="HistoAI logo"
+                            height={200}
+                            width={200}
                         />
                         <h1 className="text-4xl text-center">
                             histo<span className="font-semibold">AI</span>
@@ -28,7 +31,7 @@ export default function SetupForm() {
                         <div className="text-xl font-semibold">
                             🎉 Congratulations, you successfully deployed histoAI!
                         </div>
-                        <div><p>Here is the configuration info. Check if this is correct. If it isn't, modify the <code>histoai.config.ts</code> file.</p></div>
+                        <div><p>Here is the configuration info. Check if this is correct. If it isn&apos;t, modify the <code>histoai.config.ts</code> file.</p></div>
                         <ul className="list-disc list-inside">
                             <li>Full organization name: {orgName}</li>
                             <li>Short organization name: {shortOrgName}</li>
