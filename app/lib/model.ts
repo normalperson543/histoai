@@ -7,9 +7,9 @@ export default async function predictOSCC(imageElement: HTMLImageElement) {
         imageTensor, 
         [224, 224]
     );
-    let normalizedTensorFrame = resizedTensorFrame.div(255) as tf.Tensor;
+    //let normalizedTensorFrame = resizedTensorFrame.div(255) as tf.Tensor;
 
-    const prediction = await (model.predict(normalizedTensorFrame.expandDims()) as tf.Tensor).squeeze();
+    const prediction = await (model.predict(resizedTensorFrame.expandDims()) as tf.Tensor).squeeze();
     const predictionArray = prediction.arraySync() as number[];
     const highestIndex = prediction.argMax().arraySync() as number;
     /*https://codelabs.developers.google.com/tensorflowjs-transfer-learning-teachable-machine#13 */
