@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm-run-all install-deps-before-build setup-auth setup-db next-build",
+    "build": "npm-run-all install-deps-before-build setup-auth setup-db-gen setup-db-mig next-build",
     "next-build": "next build",
     "start": "next start",
     "lint": "next lint",
