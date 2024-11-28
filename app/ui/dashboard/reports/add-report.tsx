@@ -21,7 +21,7 @@ export default function AddReport({patients, authId}: {patients: {
     const [file, setFile] = useState("")
     async function submitReportWithId(prevState: void|undefined, formData: FormData) {
         const result = await predictOSCC(document.getElementById("osccImage") as HTMLImageElement);
-        const osccDetected = result.highestIndex == 1;
+        const osccDetected = result.prediction
         const confidenceRate = result.confidenceRate;
         submitReport(authId, osccDetected, confidenceRate, formData);
     }

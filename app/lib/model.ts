@@ -10,8 +10,14 @@ export default async function predictOSCC(imageElement: HTMLImageElement) {
     //let normalizedTensorFrame = resizedTensorFrame.div(255) as tf.Tensor;
 
     const prediction = await (model.predict(resizedTensorFrame.expandDims()) as tf.Tensor).squeeze();
-    const predictionArray = prediction.arraySync() as number[];
-    const highestIndex = prediction.argMax().arraySync() as number;
+    const predictionArray = prediction.arraySync() as number;
+    let osccDetected;
+    if (predictionArray >= 0.5) {
+        osccDetected = true;
+    }
+    else {
+        osccDetected = false;
+    }
     /*https://codelabs.developers.google.com/tensorflowjs-transfer-learning-teachable-machine#13 */
-    return {predictionArray: predictionArray, highestIndex: highestIndex, confidenceRate: predictionArray[highestIndex]};
+    return {prediction: osccDetected, confidenceRate: predictionArray};
 }
