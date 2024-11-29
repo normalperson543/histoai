@@ -10,8 +10,8 @@ This software comes with **ABSOLUTELY NO WARRANTY!!!**
 ## Installation
 To start a development server, run the following commands, which should automate 99% of the setup:
 ```
-git clone --recurse-submodules https://github.com/normalperson543/oscc-sf24.git
-cd oscc-sf24
+git clone --recurse-submodules https://github.com/normalperson543/histoai.git
+cd histoai
 npm i
 npm run setup
 npm run dev
@@ -23,8 +23,8 @@ This can be deployed locally on premises, for security purposes.
 
 Run the following commands:
 ```
-git clone --recurse-submodules https://github.com/normalperson543/oscc-sf24.git
-cd oscc-sf24
+git clone --recurse-submodules https://github.com/normalperson543/histoai.git
+cd histoai
 npm i
 ```
 Then, open the histoai.config.ts file in your text editor, and modify the configuration to customize histoAI.
