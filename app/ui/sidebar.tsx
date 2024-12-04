@@ -6,13 +6,11 @@ import Link from "next/link";
 import { FaPerson } from "react-icons/fa6";
 import { LuNewspaper } from "react-icons/lu";
 
-export default async function SideBar() {
-    const session = await auth();
-    const recentReports = await findPatientReportsUnderUser(session?.user?.id as string, 0, 5)
-    const recentPatients = await findPatientsUnderUser(session?.user?.id as string, 0, 5);
+export default function SideBar() {
+    
     const [isOpen, setIsOpen] = useState(true);
 
-    const className = "bg-black w-[10%] transition-[margin-left] ease-in-out duration-500 fixed md:static top-80 bottom-0 left-0 z-40";
+    const className = "bg-hblue w-[20%] transition-[margin-left] ease-in-out duration-500 fixed md:static top-80 bottom-0 left-0 z-40";
     const appendClass = isOpen ? " ml-0" : "ml-[-10%]";
 
     const PatientItem = ({patient} : {patient:any}) => {
@@ -73,3 +71,13 @@ export default async function SideBar() {
         </>
     )
 }
+const recentPatients = [
+    {id:"123", dateCreated: new Date(2024, 4, 22), firstName:"Rayyan", middleName:"Midhat Abdul", lastName: "Khalique", dateOfBirth: new Date(2024, 5, 5), sex: "make", assignedUser: "Rayyan"},
+    {id:"123", dateCreated: new Date(2024, 4, 22), firstName:"Rayyan", middleName:"Midhat Abdul", lastName: "Khalique", dateOfBirth: new Date(2024, 5, 5), sex: "make", assignedUser: "Rayyan"},
+    {id:"123", dateCreated: new Date(2024, 4, 22), firstName:"Rayyan", middleName:"Midhat Abdul", lastName: "Khalique", dateOfBirth: new Date(2024, 5, 5), sex: "make", assignedUser: "Rayyan"}
+]
+const recentReports = [
+    {id:"222", dateGenerated: new Date(2024, 6, 6), patientId:"123", userId:"3333", containsOSCC: true, confidenceRate: 5.4, survey:"hello", notes: "hello world"},
+    {id:"222", dateGenerated: new Date(2024, 6, 6), patientId:"123", userId:"3333", containsOSCC: true, confidenceRate: 5.4, survey:"hello", notes: "hello world"},
+    {id:"222", dateGenerated: new Date(2024, 6, 6), patientId:"123", userId:"3333", containsOSCC: true, confidenceRate: 5.4, survey:"hello", notes: "hello world"}
+]

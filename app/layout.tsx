@@ -21,12 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={redHatText.className}>
-        <Header />
-        
+      <body className=''>
+        <SideBar/>
+        <Header/>
         {children}
       </body>
     </html>
     
+
   );
 }
