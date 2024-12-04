@@ -2,6 +2,7 @@ import './stylesheets/globals.css';
 import type { Metadata } from 'next';
 import { Red_Hat_Text } from 'next/font/google';
 import Header from './ui/header';
+import SideBar from './ui/sidebar';
 
 const redHatText = Red_Hat_Text({ subsets: ['latin'] });
 
@@ -22,8 +23,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={redHatText.className}>
         <Header />
+        
         {children}
       </body>
     </html>
+    
   );
 }
