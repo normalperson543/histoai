@@ -10,7 +10,7 @@ export default function SideBar() {
     
     const [isOpen, setIsOpen] = useState(true);
 
-    const className = "bg-hblue w-[20%] transition-[margin-left] ease-in-out duration-500 fixed md:static top-80 bottom-0 left-0 z-40";
+    const className = "bg-hblue w-[20%] ml-[-12%]  transition-[margin-left] ease-in-out duration-500 fixed md:static top-80 bottom-0 left-0 z-40";
     const appendClass = isOpen ? " ml-0" : "ml-[-10%]";
 
     const PatientItem = ({patient} : {patient:any}) => {
