@@ -23,9 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className=''>
         <Header/>
-        <div className='flex'>
+        <div className='flexw-screen h-screen'>
           <SideBar/>
-          <div>
+          <div className='flex-grow'>
             {children}
           </div>
         </div>

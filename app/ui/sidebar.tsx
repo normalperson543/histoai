@@ -8,9 +8,9 @@ import { LuNewspaper } from "react-icons/lu";
 
 export default function SideBar() {
     
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
-    const className = "bg-hblue w-[20%] ml-[-12%]  transition-[margin-left] ease-in-out duration-500 fixed md:static top-80 bottom-0 left-0 z-40";
+    const className = "bg-hblue w-[20%] transition-[margin-left] ease-in-out duration-500 fixed md:static top-80 bottom-0 left-0 z-40";
     const appendClass = isOpen ? " ml-0" : "ml-[-10%]";
 
     const PatientItem = ({patient} : {patient:any}) => {
@@ -47,11 +47,6 @@ export default function SideBar() {
     return(
         <>
         <div className={`${className}${appendClass}`}>
-            <div className="p-2 flex">
-                <Link href={"/"}>
-                    <img src={"/logo.svg"} alt="Company Logo" width={50} height={50}/>
-                </Link>
-            </div>
             <div className="flex flex-col">
                 <h1>Recent Patients</h1>
                 {recentPatients.map((initPatient : any) => {
