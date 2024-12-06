@@ -14,7 +14,7 @@ export default async function Home() {
   const userInfo = await fetchUser(session?.user?.id as string);
   return (
     <main>
-      <h1 className='text-3xl pt-10'>Welcome, {userInfo?.firstName}</h1>
+      <h1 className='text-3xl pt-10 ml-5'>Welcome, {userInfo?.firstName}</h1>
       <div className='flex flex-row w-[100%] mt-10 text-4xl'>
         <h1 className='mx-auto'>Recent Uploads</h1>
         <h1 className='mx-auto'>Recent Patients</h1>
