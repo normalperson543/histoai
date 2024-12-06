@@ -7,19 +7,19 @@ import { FaPerson } from "react-icons/fa6";
 import { LuNewspaper } from "react-icons/lu";
 
 export default function SideBar() {
-    
-    const [isOpen, setIsOpen] = useState(false);
-
-    const className = "bg-hblue w-[20%] transition-[margin-left] ease-in-out duration-500 fixed md:static top-80 bottom-0 left-0 z-40";
-    const appendClass = isOpen ? " ml-0" : "ml-[-10%]";
+    const [patientsOpen, setPatientsOpen] = useState(false);
+    const [reportsOpen, setReportaOpen] = useState(false);
+    const patientAuxClassName = patientsOpen ? "" : "hidden [&>*]:hidden";
+    const reportAuxClassName = reportsOpen ? "" : " hidden";
+    const className = "bg-hblue w-[15%] md:static top-80 bottom-0 left-0 z-40 h-full";
 
     const PatientItem = ({patient} : {patient:any}) => {
         return(
-            <Link href={`dashboard/patients/${patient.id}`} className="flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10">
-                <div className="text=xl flex [&>*]:mx-auto w-[12%]">
+            <Link href={`dashboard/patients/${patient.id}`} className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10${patientAuxClassName}`}>
+                <div className="flex [&>*]:mx-auto w-[12%]">
                     <FaPerson/>
                 </div>
-                <div>
+                <div className="">
                 {patient.firstName} {patient.middleName && `${patient.middleName.substring(0,1)}.`} {patient.lastName}
                 </div>
             </Link>
@@ -27,7 +27,7 @@ export default function SideBar() {
     }
     const ReportItem = ({report} : {report:any}) => {
         return(
-            <Link href={`dashboard/patients/${report.id}`} className="flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10">
+            <Link href={`dashboard/patients/${report.id}`} className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10${reportAuxClassName}`}>
                 <div className="text=xl flex [&>*]:mx-auto w-[12%]">
                     <LuNewspaper/>
                 </div>
@@ -40,29 +40,29 @@ export default function SideBar() {
 
     const ModalOverlay = () => {
         return (
-            <div className={`flex md:hidden fixed top-80 right-0 bottom-0 left-0 bg-black/50 z-30`}></div>
+            <div className={`flex md:hidden top-80 right-0 bottom-0 left-0 bg-black/50 z-30`}></div>
         )
     }
 
     return(
         <>
-        <div className={`${className}${appendClass}`}>
-            <div className="flex flex-col">
-                <h1>Recent Patients</h1>
+        <div className={`${className}`}>
+            <div className="flex flex-col ">
+                <h1 className="flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10" onClick={() => setPatientsOpen(!patientsOpen)}>Recent Patients</h1>
                 {recentPatients.map((initPatient : any) => {
                     return(
-                        <PatientItem patient={initPatient}/>
+                        <PatientItem patient={initPatient} key={`Patient ${recentPatients.indexOf(initPatient)}`}/>
                     )
                 })}
-                <h1>Recent Reports</h1>
+                <h1 className="flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10" onClick={() => setReportaOpen(!reportsOpen)}>Recent Reports</h1>
                 {recentReports.map((initReport : any) => {
                     return(
-                        <ReportItem report={initReport}/>
+                        <ReportItem report={initReport} key={`Report ${recentReports.indexOf(initReport)}`}/>
                     )
                 })}
             </div>
         </div>
-        {isOpen ? <ModalOverlay/> : <></>}
+        <ModalOverlay/>
         </>
     )
 }

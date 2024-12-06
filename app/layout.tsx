@@ -21,11 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className=''>
+      <body className='h-screen w-screen overflow-x-hidden'>
         <Header/>
-        <div className='flexw-screen h-screen'>
+        <div className='flex h-full w-full flex-nowrap'>
           <SideBar/>
-          <div className='flex-grow'>
+          <div className='w-full'>
             {children}
           </div>
         </div>
