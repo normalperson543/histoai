@@ -2,8 +2,8 @@ import './stylesheets/globals.css';
 import type { Metadata } from 'next';
 import { Red_Hat_Text } from 'next/font/google';
 import Header from './ui/header';
-import SideBar from './ui/sidebar';
-
+import Sidebar from './ui/sidebar';
+import { Suspense } from 'react';
 const redHatText = Red_Hat_Text({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -24,7 +24,9 @@ export default function RootLayout({
       <body className='h-screen w-screen overflow-x-hidden'>
         <Header/>
         <div className='flex h-full w-full flex-nowrap'>
-          <SideBar/>
+          <Suspense>
+            <Sidebar/>
+          </Suspense>
           <div className='w-full'>
             {children}
           </div>
