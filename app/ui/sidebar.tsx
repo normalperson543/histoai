@@ -11,12 +11,12 @@ export default function SideBar() {
     const [reportsOpen, setReportaOpen] = useState(false);
     const patientAuxClassName = patientsOpen ? "" : "hidden [&>*]:hidden";
     const reportAuxClassName = reportsOpen ? "" : " hidden";
-    const className = "bg-hblue w-[15%] md:static top-80 bottom-0 left-0 z-40 h-full";
+    const className = "bg-hblue-dark text-white w-[20%] md:static top-80 bottom-0 left-0 z-40 h-full";
 
     const PatientItem = ({patient} : {patient:any}) => {
         return(
-            <Link href={`dashboard/patients/${patient.id}`} className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10${patientAuxClassName}`}>
-                <div className="flex [&>*]:mx-auto w-[12%]">
+            <Link href={`dashboard/patients/${patient.id}`} className={`flex gap-1 [&>*]:my-auto mx-auto text-md py-3 border-b-[1px] border-b-hblue-light/10${patientAuxClassName}`}>
+                <div className="flex [&>*]:mx-auto w-[15%]">
                     <FaPerson/>
                 </div>
                 <div className="">
@@ -27,8 +27,8 @@ export default function SideBar() {
     }
     const ReportItem = ({report} : {report:any}) => {
         return(
-            <Link href={`dashboard/patients/${report.id}`} className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10${reportAuxClassName}`}>
-                <div className="text=xl flex [&>*]:mx-auto w-[12%]">
+            <Link href={`dashboard/patients/${report.id}`} className={`flex gap-1 [&>*]:my-auto mx-auto text-md py-3 border-b-[1px] border-b-hblue-light/10${reportAuxClassName}`}>
+                <div className="flex [&>*]:mx-auto w-[15%]">
                     <LuNewspaper/>
                 </div>
                 <div>
@@ -48,13 +48,13 @@ export default function SideBar() {
         <>
         <div className={`${className}`}>
             <div className="flex flex-col ">
-                <h1 className="flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10" onClick={() => setPatientsOpen(!patientsOpen)}>Recent Patients</h1>
+                <h1 className="flex gap-1 [&>*]:my-auto mx-auto text-md py-3 border-b-[1px] border-b-hblue-light/10" onClick={() => setPatientsOpen(!patientsOpen)}>Recent Patients</h1>
                 {recentPatients.map((initPatient : any) => {
                     return(
                         <PatientItem patient={initPatient} key={`Patient ${recentPatients.indexOf(initPatient)}`}/>
                     )
                 })}
-                <h1 className="flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-hblue-light/10" onClick={() => setReportaOpen(!reportsOpen)}>Recent Reports</h1>
+                <h1 className="flex gap-1 [&>*]:my-auto mx-auto text-md py-3 border-b-[1px] border-b-hblue-light/10" onClick={() => setReportaOpen(!reportsOpen)}>Recent Reports</h1>
                 {recentReports.map((initReport : any) => {
                     return(
                         <ReportItem report={initReport} key={`Report ${recentReports.indexOf(initReport)}`}/>
