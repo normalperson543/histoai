@@ -25,6 +25,8 @@ export default async function ReportDetailPage({ params }: {params:any}) {
   return (
     <main className="flex flex-col pt-10">
       <h1 className="text-left text-5xl font-bold mb-8 ml-5">Report Details</h1>
+      <p className="text-left text-sm ml-5 text-gray-500">**These results are produced by aritficial intelligence and should not be used as diagnosis.</p>
+      <p className="text-left text-sm ml-5 text-gray-500">**This tool is meant to be used as a second opinion for Pathologists to review. </p>
       <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] my-5 ml-5">
           <div className="grid grid-cols-2 gap-4 text-center">
             <div>
