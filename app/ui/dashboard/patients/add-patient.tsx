@@ -45,7 +45,7 @@ export default function AddPatientForm({authId}: {authId: string}){
                 </select>
 
                 <input type="text" name="assignedUser" className="hidden"/>
-                <input type="submit" className="inline-block w-min py-0.5 px-1 border rounded-lg shadow-lg mx-auto bg-hblue-light/[0.8]"/>
+                <input type="submit" className="inline-block w-min py-0.5 px-1 border rounded-lg shadow-lg mx-auto bg-hblue-light/[0.8] mt-2"/>
             </form>
         </div>
             
