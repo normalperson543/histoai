@@ -2,7 +2,6 @@ import './stylesheets/globals.css';
 import type { Metadata } from 'next';
 import { Red_Hat_Text } from 'next/font/google';
 import Header from './ui/header';
-
 const redHatText = Red_Hat_Text({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -20,8 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={redHatText.className}>
-        <Header />
+      <body className={`${redHatText.className} h-screen w-screen overflow-x-hidden`}>
+        <Header/>
         {children}
       </body>
     </html>

@@ -16,7 +16,7 @@ export default async function Header() {
         fullName = user?.firstName + " " + user?.lastName;
     }
     return (
-        <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2 bg-hblue text-white">
+        <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2 bg-hblue text-white z-40 fixed">
             <div className="flex grow justify-start">
                 <div className="flex flex-row ">
                     <Link href="/">

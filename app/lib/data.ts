@@ -74,6 +74,26 @@ export async function findAllPatients() {
     });
     return patients;
 }
+export async function findSomePatients() {
+    const patients = await prisma.patient.findMany({
+        skip: 0,
+        take: 5,
+        orderBy: {
+            dateCreated: 'desc'
+        },
+    });
+    return patients;
+}
+export async function findSomeReports() {
+    const patients = await prisma.report.findMany({
+        skip: 0,
+        take: 5,
+        orderBy: {
+            dateGenerated: 'desc'
+        },
+    });
+    return patients;
+}
 export async function findAllReports() {
     const reports = await prisma.report.findMany({
         orderBy: {
