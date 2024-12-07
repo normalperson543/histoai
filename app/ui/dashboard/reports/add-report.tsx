@@ -43,7 +43,7 @@ export default function AddReport({patients, authId}: {patients: {
                     ))}
                 </select>
                 
-                <label className="mt-5 mb-2 block  text-gray-700 font-medium text-[#07074D]">
+                <label className="mt-5 mb-2 block  text-gray-700 font-medium">
                         Upload Image*
                 </label>
 
