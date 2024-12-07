@@ -17,7 +17,7 @@ export default function ReportContainer({reports, reportItems}: {reports: {
 reportItems: any[]}) {
     return (
         <main>
-            <h2 className='text-3xl pt-10 ml-5'>Reports</h2>
+            <h1 className='text-5xl pt-10 ml-5'>Reports</h1>
             <ul className='block w-[50%] ml-5 mt-10 divide-y divide-hblue/[0.25] border-y border-hblue-light/[0.5] shadow-lg'>
                 <li className='p-1 bg-hblue-light/[0.2] px-2'>
                 <div className='flex col-2'>
@@ -29,8 +29,8 @@ reportItems: any[]}) {
                 
             </ul>
             <div className="relative w-[50%] ml-5">
-                <Link href={"/dashboard/reports/new"}>
-                    <button className="border rounded-md shadow-lg bg-hblue-light/[0.4] px-1 absolute top-5 right-0">Add Report</button>
+                <Link href="/dashboard/reports/new">
+                    <button className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1 absolute top-5 right-0'>Add Report</button>
                 </Link>
             </div>
         </main>
