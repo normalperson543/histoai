@@ -28,16 +28,16 @@ export default function AddPatientForm({authId}: {authId: string}){
                     className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required></input>
 
                 <label className="block text-gray-700 font-medium mb-2">Middle Name</label>
-                <input type="text" id="firstName" name="firstName" className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" ></input>
+                <input type="text" id="middleName" name="middleName" className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" ></input>
 
                 <label className="block text-gray-700 font-medium mb-2">Last Name*</label>
-                <input type="text" id="firstName" name="firstName" className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required></input>
+                <input type="text" id="lastName" name="lastName" className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required></input>
 
                 <label className="block text-gray-700 font-medium mb-2">Date of Birth</label>
                 <input type="date" name="dateOfBirth" id="dateOfBirth" className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required/>
 
                 <label className="block text-gray-700 font-medium mb-2">Sex*</label>
-                <select id="gender" name="gender"
+                <select id="sex" name="sex"
                     className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400" required>
                     <option value="not given" key={"not given"}>Select sex</option>
                     <option value="male" key={"male"}>Male</option>
