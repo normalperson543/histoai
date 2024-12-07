@@ -40,9 +40,9 @@ export default async function PatientDetailPage({ params }: {params:any}) {
     </Link>
   );
   return (
-    <main className="flex flex-col items-center pt-10">
-      <h1 className="text-center text-5xl font-bold mb-8">Patient Details</h1>
-      <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4]">
+    <main className="flex flex-col pt-10">
+      <h1 className="text-left text-5xl font-bold mb-8 ml-5">Patient Details</h1>
+      <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] ml-5">
           <p className="text-lg font-semibold mb-4 text-center">Patient ID: <span className="font-normal text-gray-700">{patient.id}</span></p>
           
           <div className="grid grid-cols-2 gap-4 text-center">
@@ -67,8 +67,8 @@ export default async function PatientDetailPage({ params }: {params:any}) {
             <button className='border rounded-md shadow-lg bg-hblue-light/[0.4] px-1'>Delete this Patient</button>
           </form>
       </div>
-      <h1 className="mt-10 text-4xl font-semibold">Reports</h1>
-      <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] mt-2">
+      <h1 className="mt-10 text-4xl font-semibold ml-5">Reports</h1>
+      <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] mt-2 ml-5">
         <div className="grid grid-cols-2 gap-4 text-center">
           <h1 className="font-semibold">Report ID</h1>
           <h1 className="font-semibold">Date Added</h1>

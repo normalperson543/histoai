@@ -23,9 +23,9 @@ export default async function ReportDetailPage({ params }: {params:any}) {
   const deleteActionWithId = deleteAction.bind(null, id);
   const patient = await fetchPatient(report.patientId);
   return (
-    <main className="flex flex-col items-center pt-10">
-      <h1 className="text-center text-5xl font-bold mb-8">Report Details</h1>
-      <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] my-5">
+    <main className="flex flex-col pt-10">
+      <h1 className="text-left text-5xl font-bold mb-8 ml-5">Report Details</h1>
+      <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] my-5 ml-5">
           <div className="grid grid-cols-2 gap-4 text-center">
             <div>
               <p className="text-lg font-semibold mb-4 text-center">Report ID: <span className="font-normal text-gray-700">{report.id}</span></p>
@@ -65,8 +65,8 @@ export default async function ReportDetailPage({ params }: {params:any}) {
             </form>
           </div>
       </div>
-      <h1 className="text-center text-3xl font-bold mt-5">Patient</h1>
-          <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] my-5">
+      <h1 className="mt-10 text-4xl font-semibold ml-5">Patient</h1>
+          <div className="border rounded-lg shadow-lg w-[50%] max-w-4xl p-6 bg-hblue-light/[0.4] my-5 ml-5">
               {!!patient ?
                 <Link href={`/dashboard/patients/${report.patientId}`}>
                     <div className="grid grid-cols-2 gap-4 text-center hover:bg-hblue-light/[0.2]">
