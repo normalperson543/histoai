@@ -29,7 +29,7 @@ export default function SetupForm() {
                     <div className="md:w-1/3 max-w-sm">
                         <label>
                         <div className="text-xl font-semibold">
-                            🎉 Congratulations, you successfully deployed histoAI!
+                            🎉 Congratulations, you successfully deployed The OSCC Project!
                         </div>
                         <div><p>Here is the configuration info. Check if this is correct. If it isn&apos;t, modify the <code>histoai.config.ts</code> file.</p></div>
                         <ul className="list-disc list-inside">
@@ -79,7 +79,7 @@ export default function SetupForm() {
                                     className="mt-4 bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded text-xs tracking-wider border bg-hblue-light/[0.4]"
                                     type="submit"
                                 >
-                                    Start using histoAI
+                                    Start using The OSCC Project
                                 </button>
                             :
                                 <div className="my-1"><CircularProgress size="30px"/></div>

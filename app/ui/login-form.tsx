@@ -16,14 +16,8 @@ export default function LoginForm() {
         <form action={formAction}>
             <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
                 <div className="md:w-1/3 max-w-sm">
-                    <Image
-                        src="/logo.svg"
-                        alt="HistoAI logo"
-                        height={200}
-                        width={200}
-                    />
                     <h1 className="text-4xl text-center">
-                            histo<span className="font-semibold">AI</span>
+                        The OSCC Project
                     </h1>
                     <div className="text-xl text-center font-semibold">
                         {orgName}

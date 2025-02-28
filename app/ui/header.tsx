@@ -16,22 +16,15 @@ export default async function Header() {
         fullName = user?.firstName + " " + user?.lastName;
     }
     return (
-        <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2 bg-hblue text-white z-40 fixed">
+        <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2 bg-hblue text-white z-40 h-12 fixed">
             <div className="flex grow justify-start">
                 <div className="flex flex-row ">
-                    <Link href="/">
-                        <Image
-                            src="/logo.svg"
-                            width={50}
-                            height={50}
-                            alt="HistoAI logo"
-                        />
-                    </Link>
-                    <Link href="/">
-                        <strong className="flex items-center h-full px-3 py-1 shrink">
-                            {shortOrgName}
-                        </strong>
-                    </Link>
+                    <p className="flex items-center h-full px-3 py-1 shrink">
+                        Science Fair OSCC Project
+                    </p>
+                    <strong className="flex items-center h-full px-3 py-1 shrink">
+                        {shortOrgName}
+                    </strong>
                 </div>
                 <Link href="/dashboard">
                     <button className="flex items-center h-full px-3 py-1 shrink">

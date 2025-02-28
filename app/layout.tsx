@@ -6,8 +6,8 @@ const redHatText = Red_Hat_Text({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | histoAI",
-    default: "histoAI"
+    template: "%s | The OSCC Project",
+    default: "The OSCC Project"
   },
   description: 'The revolution in cancer detection. Making AI and OSCC detection available to everyone.',
 };
