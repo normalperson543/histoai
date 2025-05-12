@@ -2,6 +2,6 @@
 
 const config = {
     "orgName": "Corona-Norco Unified School District Science and Engineering Fair", // Enter the full name of your organization.
-    "shortOrgName": "CNUSD SEF", //Enter the short name of your organization (under 20 chars)
+    "shortOrgName": "My Org", //Enter the short name of your organization (under 20 chars)
 };
 export default config;

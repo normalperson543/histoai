@@ -42,6 +42,17 @@ export async function findPatientReportsUnderUser(userId: string, skip: number, 
     })
     return reports;
 }
+export async function findAllPatientReportsUnderUser(userId: string) {
+    const reports = await prisma.report.findMany({
+        where: {
+            userId: userId
+        },
+        orderBy: {
+            dateGenerated: 'desc'
+        }
+    })
+    return reports;
+}
 export async function findPatientReportsUnderPatient(patientId: string) {
     const reports = await prisma.report.findMany({
         where: {

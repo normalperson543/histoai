@@ -5,7 +5,6 @@ import ReportItem from '@/app/ui/dashboard/reports/report-item';
 import { CircularProgress } from '@mui/material';
 import { Suspense } from 'react';
 import { Metadata } from "next";
-
 export const metadata: Metadata = {
   title: "Reports"
 };

@@ -14,7 +14,7 @@ export default async function Header() {
     if (session) {
         const user = await fetchUser(session?.user?.id as string);
         fullName = user?.firstName + " " + user?.lastName;
-    }
+    
     return (
         <header className="flex gap-2 grow items-center flex-row justify-around w-full px-2 bg-hblue text-white z-40 h-12 fixed">
             <div className="flex grow justify-start">
@@ -88,4 +88,4 @@ export default async function Header() {
             }
         </header>
     );
-}
+}}
