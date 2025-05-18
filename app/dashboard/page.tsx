@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <main className='p-10'>
       <h1 className='text-3xl'>Welcome, {userInfo?.firstName}</h1>
-      <div className='flex flex-col'>
+      <div className='flex flex-col mt-2'>
         <h1 className='text-lg '>Recent Uploads</h1>
       </div>
       <div className='flex flex-row'>
@@ -33,7 +33,7 @@ export default async function Home() {
           return (<ReportCard report={obj} key={obj.id}/>)
         })}
       </div>
-      <div className='flex flex-col'>
+      <div className='flex flex-col mt-2'>
         <h1 className='text-lg '>Recent Patients</h1>
       </div>
       <div className='flex flex-row'>

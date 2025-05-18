@@ -13,7 +13,7 @@ export default function ReportCard({report}: {report: {
 }}) {
     return (
         <Link href={`/dashboard/reports/${report.id}`}>
-            <div className="border-gray-500 border rounded-md p-2">
+            <div className="bg-hblue-light/[0.4] border rounded-md p-2 mr-3">
                 <Image src={`/api/get_image/${report.id}`} alt="Histopathological image" width={72} height={72} />
                 <p className="text-lg font-bold">{report.id}</p>
                 {report.containsOSCC ? <div className="p-1 bg-red-300 rounded-full">OSCC Detected</div>

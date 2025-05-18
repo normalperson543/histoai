@@ -13,7 +13,7 @@ export default function PatientCard({patient}: {patient: {
 }}) {
     return (
         <Link href={`/dashboard/patients/${patient.id}`}>
-            <div className="border-gray-500 border rounded-md p-2">
+            <div className="bg-hblue-light/[0.4] border rounded-md p-2 mr-3">
                 <p className="text-lg font-bold">{patient.lastName}, {patient.firstName.substring(0, 1)}</p>
                 <p>Date created: {patient.dateCreated.toLocaleDateString('en-US', { year: "numeric", month: "long", day: "numeric" })}</p>
                 <p>Sex: {patient.sex}</p>
